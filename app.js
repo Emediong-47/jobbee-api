@@ -11,15 +11,15 @@ const ErrorHandler = require("./utils/errorHandler");
 const cookieParser = require("cookie-parser");
 const { rateLimit } = require("express-rate-limit");
 const { default: helmet } = require("helmet");
-const mongoSanitize = require("express-mongo-sanitize");
-const xssClean = require("xss-clean");
+const { xss } = require("express-xss-sanitizer");
 const hpp = require("hpp");
 const cors = require("cors");
+const sanitizer = require("perfect-express-sanitizer");
 
 dotenv.config({path : "config/config.env"});
 
 process.on("uncaughtException", err => {
-    console.log(`Error: ${err.message}`);
+    console.log(`Error: ${err.stack}`);
     console.log(`Shutting down due to Uncaught Exception!`);
     process.exit(1);
 });
@@ -40,9 +40,15 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(cookieParser());
 app.use(fileUpload());
+app.use(
+  sanitizer.clean({
+    xss: true,
+    noSql: true,
+    sql: true,
+  })
+);
 app.use(helmet());
-app.use(mongoSanitize());
-app.use(xssClean());
+app.use(xss());
 app.use(hpp({
     whitelist: ["positions"]
 }));
