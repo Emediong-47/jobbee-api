@@ -101,6 +101,7 @@ exports.deleteJob = catchAsyncErrors(async (req, res, next) => {
       "\\controllers",
       ""
     );
+    console.log(filepath);
 
     fs.unlink(filepath, (err) => {
       if (err) {

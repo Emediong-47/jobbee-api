@@ -1,0 +1,3280 @@
+openapi: 3.0.0
+info:
+  title: Jobbee API
+  description: >-
+    **Jobbee API** is a RESTful backend API built with Node.js, designed to
+    manage job listings, user accounts, authentication, and related features. It
+    provides endpoints for job creation, retrieval, updating, and deletion, as
+    well as user registration, login, role-based access control, and more,
+    making it ideal for modern job board applications.
+  version: 1.0.0
+servers:
+  - url: https://jobbee-api-6327.onrender.com
+  - url: http://localhost:5000
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+    noauthAuth:
+      type: http
+      scheme: noauth
+tags:
+  - name: Jobs
+    description: >-
+      All request related to jobs like: Create, Read, Update, Delete, Apply to
+      jobs etc.
+  - name: Authentication
+    description: >-
+      Includes all routes related to user authentication and account management,
+      such as user registration, login, logout, password reset, and account
+      recovery. These endpoints handle secure user access and identity
+      verification.
+  - name: Users
+    description: >-
+      Includes all routes related to user management, such as retrieving user
+      profiles, updating account information, changing passwords, and managing
+      roles. These routes support both general users and administrators.
+paths:
+  /api/v1/jobs:
+    get:
+      tags:
+        - Jobs
+      summary: Get all jobs
+      description: Retrieves all job listings stored in the database.
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Fri, 27 Jun 2025 20:09:39 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '565'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            access-control-allow-origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            content-security-policy:
+              schema:
+                type: string
+                example: >-
+                  default-src 'self';base-uri 'self';font-src 'self' https:
+                  data:;form-action 'self';frame-ancestors 'self';img-src 'self'
+                  data:;object-src 'none';script-src 'self';script-src-attr
+                  'none';style-src 'self' https:
+                  'unsafe-inline';upgrade-insecure-requests
+            cross-origin-opener-policy:
+              schema:
+                type: string
+                example: same-origin
+            cross-origin-resource-policy:
+              schema:
+                type: string
+                example: same-origin
+            etag:
+              schema:
+                type: string
+                example: W/"386-keWvq99i4Grdwssu+m4b8l/l5FE"
+            origin-agent-cluster:
+              schema:
+                type: string
+                example: '?1'
+            referrer-policy:
+              schema:
+                type: string
+                example: no-referrer
+            rndr-id:
+              schema:
+                type: string
+                example: d7f831e3-f7d4-4ed5
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=31536000; includeSubDomains
+            vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-dns-prefetch-control:
+              schema:
+                type: string
+                example: 'off'
+            x-download-options:
+              schema:
+                type: string
+                example: noopen
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-permitted-cross-domain-policies:
+              schema:
+                type: string
+                example: none
+            x-ratelimit-limit:
+              schema:
+                type: integer
+                example: '100'
+            x-ratelimit-remaining:
+              schema:
+                type: integer
+                example: '97'
+            x-ratelimit-reset:
+              schema:
+                type: integer
+                example: '1751055458'
+            x-render-origin-server:
+              schema:
+                type: string
+                example: Render
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+            cf-cache-status:
+              schema:
+                type: string
+                example: DYNAMIC
+            Server:
+              schema:
+                type: string
+                example: cloudflare
+            CF-RAY:
+              schema:
+                type: string
+                example: 9567954fda49bce8-CDG
+            alt-svc:
+              schema:
+                type: string
+                example: h3=":443"; ma=86400
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                results: 1
+                data:
+                  - location:
+                      type: Point
+                      coordinates:
+                        - -84.300315
+                        - 33.806302
+                      formattedAddress: >-
+                        959, Heritage Hills, Toco Hills, Decatur, DeKalb County,
+                        Georgia, 30033, USA
+                      city: Decatur
+                      state: Georgia
+                      zipcode: '30033'
+                      country: US
+                    _id: 685e2a7f452b6c3b1abf2eaf
+                    title: Curriculum Developer
+                    description: >-
+                      Develop engaging and standardized academic content for
+                      online and classroom use. Expertise in instructional
+                      design and K-12tertiary education is required.
+                    email: recruitment@learnbridge.org
+                    address: 95 Heritage Street, Atlanta, GA, 30303
+                    company: LearnBridge Academy
+                    industry:
+                      - Education/Training
+                    jobType: Contract
+                    minEducation: Masters
+                    positions: 3
+                    experience: 5 Years+
+                    salary: 75000
+                    lastDate: '2025-07-04T05:05:31.870Z'
+                    user: 685e14896fe51087df7aec1a
+                    postingDate: '2025-06-27T05:22:07.845Z'
+                    slug: curriculum-developer
+  /api/v1/job/new:
+    post:
+      tags:
+        - Jobs
+      summary: Create New Job
+      description: >-
+        Creates and adds a new job posting to the database. The user must be
+        authenticated and have an employer role to access this route.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: Banking Operations Officer
+                description: >-
+                  Manage day-to-day bank transactions, process documentation,
+                  and ensure regulatory compliance. Strong understanding of core
+                  banking systems and customer service is essential.
+                email: hr@unitybanking.com
+                address: 300 Crescent Tower, Chicago, IL, 60606
+                company: Unity Banking Corp
+                industry:
+                  - Banking
+                jobType: Permanent
+                minEducation: Bachelors
+                positions: 1
+                experience: 2 Years - 5 Years
+                salary: '70000'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTAyNmM2MGM5NmNkYTNhZGQzNDBiOCIsImlhdCI6MTc1MDEyMzg5MSwiZXhwIjoxNzUwNzI4NjkxfQ.h_7PqgE91i5Lt6wAB6e6Wb0T7de-zC4QDW1YjsU6Fmg
+      responses:
+        '200':
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Fri, 27 Jun 2025 20:13:22 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '600'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            access-control-allow-origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            content-security-policy:
+              schema:
+                type: string
+                example: >-
+                  default-src 'self';base-uri 'self';font-src 'self' https:
+                  data:;form-action 'self';frame-ancestors 'self';img-src 'self'
+                  data:;object-src 'none';script-src 'self';script-src-attr
+                  'none';style-src 'self' https:
+                  'unsafe-inline';upgrade-insecure-requests
+            cross-origin-opener-policy:
+              schema:
+                type: string
+                example: same-origin
+            cross-origin-resource-policy:
+              schema:
+                type: string
+                example: same-origin
+            etag:
+              schema:
+                type: string
+                example: W/"3c2-pttey+Gy/deMl1wLQs1+q4s1hTI"
+            origin-agent-cluster:
+              schema:
+                type: string
+                example: '?1'
+            referrer-policy:
+              schema:
+                type: string
+                example: no-referrer
+            rndr-id:
+              schema:
+                type: string
+                example: 77a1e501-f810-429d
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=31536000; includeSubDomains
+            vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-dns-prefetch-control:
+              schema:
+                type: string
+                example: 'off'
+            x-download-options:
+              schema:
+                type: string
+                example: noopen
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-permitted-cross-domain-policies:
+              schema:
+                type: string
+                example: none
+            x-ratelimit-limit:
+              schema:
+                type: integer
+                example: '100'
+            x-ratelimit-remaining:
+              schema:
+                type: integer
+                example: '95'
+            x-ratelimit-reset:
+              schema:
+                type: integer
+                example: '1751055458'
+            x-render-origin-server:
+              schema:
+                type: string
+                example: Render
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+            cf-cache-status:
+              schema:
+                type: string
+                example: DYNAMIC
+            Server:
+              schema:
+                type: string
+                example: cloudflare
+            CF-RAY:
+              schema:
+                type: string
+                example: 95679ac2680cbb24-CDG
+            alt-svc:
+              schema:
+                type: string
+                example: h3=":443"; ma=86400
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                message: Job Created!
+                data:
+                  title: Banking Operations Officer
+                  description: >-
+                    Manage day-to-day bank transactions, process documentation,
+                    and ensure regulatory compliance. Strong understanding of
+                    core banking systems and customer service is essential.
+                  email: hr@unitybanking.com
+                  address: 300 Crescent Tower, Chicago, IL, 60606
+                  location:
+                    type: Point
+                    coordinates:
+                      - -87.8632769
+                      - 42.0936067
+                    formattedAddress: >-
+                      300, Crescent Lane, Northfield, Cook County, Illinois,
+                      60026, USA
+                    city: Northfield
+                    state: Illinois
+                    zipcode: '60026'
+                    country: US
+                  company: Unity Banking Corp
+                  industry:
+                    - Banking
+                  jobType: Permanent
+                  minEducation: Bachelors
+                  positions: 1
+                  experience: 2 Years - 5 Years
+                  salary: 70000
+                  lastDate: '2025-07-04T20:07:34.859Z'
+                  applicantsApplied: []
+                  user: 685e14896fe51087df7aec1a
+                  _id: 685efb611e59928d51631c74
+                  postingDate: '2025-06-27T20:13:21.914Z'
+                  slug: banking-operations-officer
+                  __v: 0
+  /api/v1/jobs/94109/33:
+    get:
+      tags:
+        - Jobs
+      summary: Get job within Radius/Distance
+      description: >-
+        Retrieves all jobs located within a specified distance (radius) from a
+        given geographical point, based on latitude and longitude coordinates.
+        Useful for location-based job filtering.
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/job/685efb611e59928d51631c74:
+    delete:
+      tags:
+        - Jobs
+      summary: Delete Job
+      description: >-
+        Deletes a specific job from the database using its unique ID. The user
+        must be authenticated and authorized as the employer who created the
+        job.
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Sat, 28 Jun 2025 10:17:41 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '51'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            access-control-allow-origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            content-security-policy:
+              schema:
+                type: string
+                example: >-
+                  default-src 'self';base-uri 'self';font-src 'self' https:
+                  data:;form-action 'self';frame-ancestors 'self';img-src 'self'
+                  data:;object-src 'none';script-src 'self';script-src-attr
+                  'none';style-src 'self' https:
+                  'unsafe-inline';upgrade-insecure-requests
+            cross-origin-opener-policy:
+              schema:
+                type: string
+                example: same-origin
+            cross-origin-resource-policy:
+              schema:
+                type: string
+                example: same-origin
+            etag:
+              schema:
+                type: string
+                example: W/"36-6YdTTqVyo4+GRM5si3zz6TRgJr0"
+            origin-agent-cluster:
+              schema:
+                type: string
+                example: '?1'
+            referrer-policy:
+              schema:
+                type: string
+                example: no-referrer
+            rndr-id:
+              schema:
+                type: string
+                example: 561bf92b-eea4-4e9a
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=31536000; includeSubDomains
+            vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-dns-prefetch-control:
+              schema:
+                type: string
+                example: 'off'
+            x-download-options:
+              schema:
+                type: string
+                example: noopen
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-permitted-cross-domain-policies:
+              schema:
+                type: string
+                example: none
+            x-ratelimit-limit:
+              schema:
+                type: integer
+                example: '100'
+            x-ratelimit-remaining:
+              schema:
+                type: integer
+                example: '97'
+            x-ratelimit-reset:
+              schema:
+                type: integer
+                example: '1751106370'
+            x-render-origin-server:
+              schema:
+                type: string
+                example: Render
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+            cf-cache-status:
+              schema:
+                type: string
+                example: DYNAMIC
+            Server:
+              schema:
+                type: string
+                example: cloudflare
+            CF-RAY:
+              schema:
+                type: string
+                example: 956c6f8f3d400194-CDG
+            alt-svc:
+              schema:
+                type: string
+                example: h3=":443"; ma=86400
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                message: Job deleted successfully!
+  /api/v1/job/685e2a7f452b6c3b1abf2eaf:
+    put:
+      tags:
+        - Jobs
+      summary: Update Job
+      description: >-
+        Updates the details of an existing job in the database using its unique
+        ID. The user must be authenticated and must be the employer who
+        originally posted the job.
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\r\n    \"title\": \"Mobile App Developer!\",\r\n   
+                \"email\": \"jobs@mobilefuture.com\"\r\n}"
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Sat, 28 Jun 2025 10:21:11 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '588'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            access-control-allow-origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            content-security-policy:
+              schema:
+                type: string
+                example: >-
+                  default-src 'self';base-uri 'self';font-src 'self' https:
+                  data:;form-action 'self';frame-ancestors 'self';img-src 'self'
+                  data:;object-src 'none';script-src 'self';script-src-attr
+                  'none';style-src 'self' https:
+                  'unsafe-inline';upgrade-insecure-requests
+            cross-origin-opener-policy:
+              schema:
+                type: string
+                example: same-origin
+            cross-origin-resource-policy:
+              schema:
+                type: string
+                example: same-origin
+            etag:
+              schema:
+                type: string
+                example: W/"3ab-aJv3BDKnOuBUbNbhBsq5qeZfD2E"
+            origin-agent-cluster:
+              schema:
+                type: string
+                example: '?1'
+            referrer-policy:
+              schema:
+                type: string
+                example: no-referrer
+            rndr-id:
+              schema:
+                type: string
+                example: a6c73bc6-ffda-4d80
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=31536000; includeSubDomains
+            vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-dns-prefetch-control:
+              schema:
+                type: string
+                example: 'off'
+            x-download-options:
+              schema:
+                type: string
+                example: noopen
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-permitted-cross-domain-policies:
+              schema:
+                type: string
+                example: none
+            x-ratelimit-limit:
+              schema:
+                type: integer
+                example: '100'
+            x-ratelimit-remaining:
+              schema:
+                type: integer
+                example: '95'
+            x-ratelimit-reset:
+              schema:
+                type: integer
+                example: '1751106370'
+            x-render-origin-server:
+              schema:
+                type: string
+                example: Render
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+            cf-cache-status:
+              schema:
+                type: string
+                example: DYNAMIC
+            Server:
+              schema:
+                type: string
+                example: cloudflare
+            CF-RAY:
+              schema:
+                type: string
+                example: 956c74aceb2dd0b6-CDG
+            alt-svc:
+              schema:
+                type: string
+                example: h3=":443"; ma=86400
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                message: Job detail is successfully updated!
+                data:
+                  location:
+                    type: Point
+                    coordinates:
+                      - -84.300315
+                      - 33.806302
+                    formattedAddress: >-
+                      959, Heritage Hills, Toco Hills, Decatur, DeKalb County,
+                      Georgia, 30033, USA
+                    city: Decatur
+                    state: Georgia
+                    zipcode: '30033'
+                    country: US
+                  _id: 685e2a7f452b6c3b1abf2eaf
+                  title: Mobile App Developer!
+                  description: >-
+                    Develop engaging and standardized academic content for
+                    online and classroom use. Expertise in instructional design
+                    and K-12tertiary education is required.
+                  email: jobs@mobilefuture.com
+                  address: 95 Heritage Street, Atlanta, GA, 30303
+                  company: LearnBridge Academy
+                  industry:
+                    - Education/Training
+                  jobType: Contract
+                  minEducation: Masters
+                  positions: 3
+                  experience: 5 Years+
+                  salary: 75000
+                  lastDate: '2025-07-04T05:05:31.870Z'
+                  user: 685e14896fe51087df7aec1a
+                  postingDate: '2025-06-27T05:22:07.845Z'
+                  slug: curriculum-developer
+                  __v: 0
+  /api/v1/job/685e2a7f452b6c3b1abf2eaf/curriculum-developer:
+    get:
+      tags:
+        - Jobs
+      summary: Get Single Job
+      description: >-
+        Retrieves detailed information about a specific job by providing its
+        unique ID and slug. Useful for displaying full job details on a
+        dedicated page.
+      security:
+        - noauthAuth: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Sat, 28 Jun 2025 10:25:53 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '586'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            access-control-allow-origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            content-security-policy:
+              schema:
+                type: string
+                example: >-
+                  default-src 'self';base-uri 'self';font-src 'self' https:
+                  data:;form-action 'self';frame-ancestors 'self';img-src 'self'
+                  data:;object-src 'none';script-src 'self';script-src-attr
+                  'none';style-src 'self' https:
+                  'unsafe-inline';upgrade-insecure-requests
+            cross-origin-opener-policy:
+              schema:
+                type: string
+                example: same-origin
+            cross-origin-resource-policy:
+              schema:
+                type: string
+                example: same-origin
+            etag:
+              schema:
+                type: string
+                example: W/"3bc-oTuQ6bkWmyLhJtbMWc8PJTMwx7Y"
+            origin-agent-cluster:
+              schema:
+                type: string
+                example: '?1'
+            referrer-policy:
+              schema:
+                type: string
+                example: no-referrer
+            rndr-id:
+              schema:
+                type: string
+                example: ec237ee1-0de1-49fa
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=31536000; includeSubDomains
+            vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-dns-prefetch-control:
+              schema:
+                type: string
+                example: 'off'
+            x-download-options:
+              schema:
+                type: string
+                example: noopen
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-permitted-cross-domain-policies:
+              schema:
+                type: string
+                example: none
+            x-ratelimit-limit:
+              schema:
+                type: integer
+                example: '100'
+            x-ratelimit-remaining:
+              schema:
+                type: integer
+                example: '94'
+            x-ratelimit-reset:
+              schema:
+                type: integer
+                example: '1751106370'
+            x-render-origin-server:
+              schema:
+                type: string
+                example: Render
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+            cf-cache-status:
+              schema:
+                type: string
+                example: DYNAMIC
+            Server:
+              schema:
+                type: string
+                example: cloudflare
+            CF-RAY:
+              schema:
+                type: string
+                example: 956c7b942f053c86-CDG
+            alt-svc:
+              schema:
+                type: string
+                example: h3=":443"; ma=86400
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                data:
+                  - location:
+                      type: Point
+                      coordinates:
+                        - -84.300315
+                        - 33.806302
+                      formattedAddress: >-
+                        959, Heritage Hills, Toco Hills, Decatur, DeKalb County,
+                        Georgia, 30033, USA
+                      city: Decatur
+                      state: Georgia
+                      zipcode: '30033'
+                      country: US
+                    _id: 685e2a7f452b6c3b1abf2eaf
+                    title: Mobile App Developer!
+                    description: >-
+                      Develop engaging and standardized academic content for
+                      online and classroom use. Expertise in instructional
+                      design and K-12tertiary education is required.
+                    email: jobs@mobilefuture.com
+                    address: 95 Heritage Street, Atlanta, GA, 30303
+                    company: LearnBridge Academy
+                    industry:
+                      - Education/Training
+                    jobType: Contract
+                    minEducation: Masters
+                    positions: 3
+                    experience: 5 Years+
+                    salary: 75000
+                    lastDate: '2025-07-04T05:05:31.870Z'
+                    user:
+                      _id: 685e14896fe51087df7aec1a
+                      name: Blessing Duff
+                      id: 685e14896fe51087df7aec1a
+                    postingDate: '2025-06-27T05:22:07.845Z'
+                    slug: curriculum-developer
+                    __v: 0
+  /api/v1/stats/developer:
+    get:
+      tags:
+        - Jobs
+      summary: Get Topic Stats
+      description: >-
+        Returns aggregated statistics related to a specific job topic, such as
+        the number of jobs available, average positions, and salary trends.
+        Useful for analytics and insights.
+      security:
+        - noauthAuth: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Sun, 29 Jun 2025 05:16:54 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '101'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            access-control-allow-origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            content-security-policy:
+              schema:
+                type: string
+                example: >-
+                  default-src 'self';base-uri 'self';font-src 'self' https:
+                  data:;form-action 'self';frame-ancestors 'self';img-src 'self'
+                  data:;object-src 'none';script-src 'self';script-src-attr
+                  'none';style-src 'self' https:
+                  'unsafe-inline';upgrade-insecure-requests
+            cross-origin-opener-policy:
+              schema:
+                type: string
+                example: same-origin
+            cross-origin-resource-policy:
+              schema:
+                type: string
+                example: same-origin
+            etag:
+              schema:
+                type: string
+                example: W/"84-Tyg3iloJkM+bN3syFEVyIDDMXrc"
+            origin-agent-cluster:
+              schema:
+                type: string
+                example: '?1'
+            referrer-policy:
+              schema:
+                type: string
+                example: no-referrer
+            rndr-id:
+              schema:
+                type: string
+                example: 84a3af71-d2e7-4a63
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=31536000; includeSubDomains
+            vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-dns-prefetch-control:
+              schema:
+                type: string
+                example: 'off'
+            x-download-options:
+              schema:
+                type: string
+                example: noopen
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-permitted-cross-domain-policies:
+              schema:
+                type: string
+                example: none
+            x-ratelimit-limit:
+              schema:
+                type: integer
+                example: '100'
+            x-ratelimit-remaining:
+              schema:
+                type: integer
+                example: '99'
+            x-ratelimit-reset:
+              schema:
+                type: integer
+                example: '1751174813'
+            x-render-origin-server:
+              schema:
+                type: string
+                example: Render
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+            cf-cache-status:
+              schema:
+                type: string
+                example: DYNAMIC
+            Server:
+              schema:
+                type: string
+                example: cloudflare
+            CF-RAY:
+              schema:
+                type: string
+                example: 9572f3ca4b976f87-CDG
+            alt-svc:
+              schema:
+                type: string
+                example: h3=":443"; ma=86400
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                data:
+                  - _id: 5 YEARS+
+                    totalJobs: 1
+                    avgPosition: 3
+                    averageSalary: 75000
+                    minSalary: 75000
+                    maxSalary: 75000
+  /api/v1/job/685a192f61150febb0383bce/apply:
+    put:
+      tags:
+        - Jobs
+      summary: Apply For Job With Resume
+      description: Apply to any job by uploading resume
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: ''
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/login:
+    post:
+      tags:
+        - Authentication
+      summary: Login User
+      description: Login User with email and password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: blessingduff79@gmail.com
+                password: Bless12345
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Fri, 27 Jun 2025 18:41:18 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '173'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            access-control-allow-origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            content-security-policy:
+              schema:
+                type: string
+                example: >-
+                  default-src 'self';base-uri 'self';font-src 'self' https:
+                  data:;form-action 'self';frame-ancestors 'self';img-src 'self'
+                  data:;object-src 'none';script-src 'self';script-src-attr
+                  'none';style-src 'self' https:
+                  'unsafe-inline';upgrade-insecure-requests
+            cross-origin-opener-policy:
+              schema:
+                type: string
+                example: same-origin
+            cross-origin-resource-policy:
+              schema:
+                type: string
+                example: same-origin
+            etag:
+              schema:
+                type: string
+                example: W/"c6-Hs+IfdlLIRzvxhMDwZwqFl3VBfM"
+            origin-agent-cluster:
+              schema:
+                type: string
+                example: '?1'
+            referrer-policy:
+              schema:
+                type: string
+                example: no-referrer
+            rndr-id:
+              schema:
+                type: string
+                example: 80a1b87d-ae05-4bea
+            Set-Cookie:
+              schema:
+                type: string
+                example: >-
+                  token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NWUxNDg5NmZlNTEwODdkZjdhZWMxYSIsImlhdCI6MTc1MTA0OTY3OCwiZXhwIjoxNzUxNjU0NDc4fQ.ZkPaTz92Z_0Mi-wEg1kFA1hBfML6Ln_BQXyTGr4EwEU;
+                  Path=/; Expires=Fri, 04 Jul 2025 18:41:18 GMT; HttpOnly;
+                  SameSite=Strict
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=31536000; includeSubDomains
+            vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-dns-prefetch-control:
+              schema:
+                type: string
+                example: 'off'
+            x-download-options:
+              schema:
+                type: string
+                example: noopen
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-permitted-cross-domain-policies:
+              schema:
+                type: string
+                example: none
+            x-ratelimit-limit:
+              schema:
+                type: integer
+                example: '100'
+            x-ratelimit-remaining:
+              schema:
+                type: integer
+                example: '96'
+            x-ratelimit-reset:
+              schema:
+                type: integer
+                example: '1751050164'
+            x-render-origin-server:
+              schema:
+                type: string
+                example: Render
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+            cf-cache-status:
+              schema:
+                type: string
+                example: DYNAMIC
+            Server:
+              schema:
+                type: string
+                example: cloudflare
+            CF-RAY:
+              schema:
+                type: string
+                example: 956713e67bbfbb60-CDG
+            alt-svc:
+              schema:
+                type: string
+                example: h3=":443"; ma=86400
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                token: >-
+                  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NWUxNDg5NmZlNTEwODdkZjdhZWMxYSIsImlhdCI6MTc1MTA0OTY3OCwiZXhwIjoxNzUxNjU0NDc4fQ.ZkPaTz92Z_0Mi-wEg1kFA1hBfML6Ln_BQXyTGr4EwEU
+  /api/v1/register:
+    post:
+      tags:
+        - Authentication
+      summary: Register User
+      description: >-
+        Register user with email, password, name and role. Encrypted Password
+        will be save in database.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Anu Adebayo
+                email: adebayoanu118@gmail.com
+                password: Anu12345
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Fri, 27 Jun 2025 20:07:39 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '170'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            access-control-allow-origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            content-security-policy:
+              schema:
+                type: string
+                example: >-
+                  default-src 'self';base-uri 'self';font-src 'self' https:
+                  data:;form-action 'self';frame-ancestors 'self';img-src 'self'
+                  data:;object-src 'none';script-src 'self';script-src-attr
+                  'none';style-src 'self' https:
+                  'unsafe-inline';upgrade-insecure-requests
+            cross-origin-opener-policy:
+              schema:
+                type: string
+                example: same-origin
+            cross-origin-resource-policy:
+              schema:
+                type: string
+                example: same-origin
+            etag:
+              schema:
+                type: string
+                example: W/"c6-MfVHGe5Y4jWllMyRlVujTBpaG44"
+            origin-agent-cluster:
+              schema:
+                type: string
+                example: '?1'
+            referrer-policy:
+              schema:
+                type: string
+                example: no-referrer
+            rndr-id:
+              schema:
+                type: string
+                example: dc264590-3f1e-4b7e
+            Set-Cookie:
+              schema:
+                type: string
+                example: >-
+                  token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NWVmYTA5MWU1OTkyOGQ1MTYzMWM2YSIsImlhdCI6MTc1MTA1NDg1OCwiZXhwIjoxNzUxNjU5NjU4fQ.IW6gnerY5KQhfMwEgueFuK0xwsrqMLntEILNKvAYKw4;
+                  Path=/; Expires=Fri, 04 Jul 2025 20:07:38 GMT; HttpOnly;
+                  SameSite=Strict
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=31536000; includeSubDomains
+            vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-dns-prefetch-control:
+              schema:
+                type: string
+                example: 'off'
+            x-download-options:
+              schema:
+                type: string
+                example: noopen
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-permitted-cross-domain-policies:
+              schema:
+                type: string
+                example: none
+            x-ratelimit-limit:
+              schema:
+                type: integer
+                example: '100'
+            x-ratelimit-remaining:
+              schema:
+                type: integer
+                example: '99'
+            x-ratelimit-reset:
+              schema:
+                type: integer
+                example: '1751055458'
+            x-render-origin-server:
+              schema:
+                type: string
+                example: Render
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+            cf-cache-status:
+              schema:
+                type: string
+                example: DYNAMIC
+            Server:
+              schema:
+                type: string
+                example: cloudflare
+            CF-RAY:
+              schema:
+                type: string
+                example: 956791d0aabc75de-CDG
+            alt-svc:
+              schema:
+                type: string
+                example: h3=":443"; ma=86400
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                token: >-
+                  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NWVmYTA5MWU1OTkyOGQ1MTYzMWM2YSIsImlhdCI6MTc1MTA1NDg1OCwiZXhwIjoxNzUxNjU5NjU4fQ.IW6gnerY5KQhfMwEgueFuK0xwsrqMLntEILNKvAYKw4
+  /api/v1/password/forgot:
+    post:
+      tags:
+        - Authentication
+      summary: Send Password Reset Email
+      description: >-
+        Sends a password reset email to the user’s registered email address. The
+        email contains a secure token with an expiration time, which can be used
+        to reset the password.
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: '"{\r\n    \"email\": \"adebayoanu118@gmail.com\"\r\n}"'
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Sun, 29 Jun 2025 23:42:58 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '72'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            access-control-allow-origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            content-security-policy:
+              schema:
+                type: string
+                example: >-
+                  default-src 'self';base-uri 'self';font-src 'self' https:
+                  data:;form-action 'self';frame-ancestors 'self';img-src 'self'
+                  data:;object-src 'none';script-src 'self';script-src-attr
+                  'none';style-src 'self' https:
+                  'unsafe-inline';upgrade-insecure-requests
+            cross-origin-opener-policy:
+              schema:
+                type: string
+                example: same-origin
+            cross-origin-resource-policy:
+              schema:
+                type: string
+                example: same-origin
+            etag:
+              schema:
+                type: string
+                example: W/"50-a8oLL9rharjEqF51U/+dv6UQz/8"
+            origin-agent-cluster:
+              schema:
+                type: string
+                example: '?1'
+            referrer-policy:
+              schema:
+                type: string
+                example: no-referrer
+            rndr-id:
+              schema:
+                type: string
+                example: c318f8e9-c1a6-4fb5
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=31536000; includeSubDomains
+            vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-dns-prefetch-control:
+              schema:
+                type: string
+                example: 'off'
+            x-download-options:
+              schema:
+                type: string
+                example: noopen
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-permitted-cross-domain-policies:
+              schema:
+                type: string
+                example: none
+            x-ratelimit-limit:
+              schema:
+                type: integer
+                example: '100'
+            x-ratelimit-remaining:
+              schema:
+                type: integer
+                example: '98'
+            x-ratelimit-reset:
+              schema:
+                type: integer
+                example: '1751241147'
+            x-render-origin-server:
+              schema:
+                type: string
+                example: Render
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+            cf-cache-status:
+              schema:
+                type: string
+                example: DYNAMIC
+            Server:
+              schema:
+                type: string
+                example: cloudflare
+            CF-RAY:
+              schema:
+                type: string
+                example: 9579488108049ea9-CDG
+            alt-svc:
+              schema:
+                type: string
+                example: h3=":443"; ma=86400
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                message: 'Email sent successfully to: adebayoanu118@gmail.com'
+  /api/v1/password/reset/92f388e7eb403ed25df6f3069378cafd7c269dbe:
+    put:
+      tags:
+        - Authentication
+      summary: Reset New Password
+      description: >-
+        Resets the password for a user account using a valid reset token. This
+        route is typically accessed via the link sent to the user's email and
+        allows the user to set a new password.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                password: Anu123456789
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Sun, 29 Jun 2025 23:44:14 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '170'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            access-control-allow-origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            content-security-policy:
+              schema:
+                type: string
+                example: >-
+                  default-src 'self';base-uri 'self';font-src 'self' https:
+                  data:;form-action 'self';frame-ancestors 'self';img-src 'self'
+                  data:;object-src 'none';script-src 'self';script-src-attr
+                  'none';style-src 'self' https:
+                  'unsafe-inline';upgrade-insecure-requests
+            cross-origin-opener-policy:
+              schema:
+                type: string
+                example: same-origin
+            cross-origin-resource-policy:
+              schema:
+                type: string
+                example: same-origin
+            etag:
+              schema:
+                type: string
+                example: W/"c6-iXWMPlBKzp1Uv7pUmKtyOEEhrQ8"
+            origin-agent-cluster:
+              schema:
+                type: string
+                example: '?1'
+            referrer-policy:
+              schema:
+                type: string
+                example: no-referrer
+            rndr-id:
+              schema:
+                type: string
+                example: a12f93e5-0a8c-417d
+            Set-Cookie:
+              schema:
+                type: string
+                example: >-
+                  token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NWVmYTA5MWU1OTkyOGQ1MTYzMWM2YSIsImlhdCI6MTc1MTI0MDY1NCwiZXhwIjoxNzUxODQ1NDU0fQ.6bVha9hQFw9D-1eDjtSFz2vs5XimZLQ8q-bOdlqtDSI;
+                  Path=/; Expires=Sun, 06 Jul 2025 23:44:14 GMT; HttpOnly;
+                  SameSite=Strict
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=31536000; includeSubDomains
+            vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-dns-prefetch-control:
+              schema:
+                type: string
+                example: 'off'
+            x-download-options:
+              schema:
+                type: string
+                example: noopen
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-permitted-cross-domain-policies:
+              schema:
+                type: string
+                example: none
+            x-ratelimit-limit:
+              schema:
+                type: integer
+                example: '100'
+            x-ratelimit-remaining:
+              schema:
+                type: integer
+                example: '97'
+            x-ratelimit-reset:
+              schema:
+                type: integer
+                example: '1751241147'
+            x-render-origin-server:
+              schema:
+                type: string
+                example: Render
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+            cf-cache-status:
+              schema:
+                type: string
+                example: DYNAMIC
+            Server:
+              schema:
+                type: string
+                example: cloudflare
+            CF-RAY:
+              schema:
+                type: string
+                example: 95794a64f8f89ea9-CDG
+            alt-svc:
+              schema:
+                type: string
+                example: h3=":443"; ma=86400
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                token: >-
+                  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NWVmYTA5MWU1OTkyOGQ1MTYzMWM2YSIsImlhdCI6MTc1MTI0MDY1NCwiZXhwIjoxNzUxODQ1NDU0fQ.6bVha9hQFw9D-1eDjtSFz2vs5XimZLQ8q-bOdlqtDSI
+  /api/v1/logout:
+    get:
+      tags:
+        - Authentication
+      summary: Logout User
+      description: >-
+        Logs the user out of the application by clearing the authentication
+        token and expiring the associated cookie. This ensures the user session
+        is securely terminated.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Sun, 29 Jun 2025 23:46:35 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '51'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            access-control-allow-origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            content-security-policy:
+              schema:
+                type: string
+                example: >-
+                  default-src 'self';base-uri 'self';font-src 'self' https:
+                  data:;form-action 'self';frame-ancestors 'self';img-src 'self'
+                  data:;object-src 'none';script-src 'self';script-src-attr
+                  'none';style-src 'self' https:
+                  'unsafe-inline';upgrade-insecure-requests
+            cross-origin-opener-policy:
+              schema:
+                type: string
+                example: same-origin
+            cross-origin-resource-policy:
+              schema:
+                type: string
+                example: same-origin
+            etag:
+              schema:
+                type: string
+                example: W/"35-vOBgWXGIRpc4Ao1fXkzLcYmgyu0"
+            origin-agent-cluster:
+              schema:
+                type: string
+                example: '?1'
+            referrer-policy:
+              schema:
+                type: string
+                example: no-referrer
+            rndr-id:
+              schema:
+                type: string
+                example: f3c7ab70-9925-47aa
+            Set-Cookie:
+              schema:
+                type: string
+                example: >-
+                  token=none; Path=/; Expires=Sun, 29 Jun 2025 23:46:35 GMT;
+                  HttpOnly
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=31536000; includeSubDomains
+            vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-dns-prefetch-control:
+              schema:
+                type: string
+                example: 'off'
+            x-download-options:
+              schema:
+                type: string
+                example: noopen
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-permitted-cross-domain-policies:
+              schema:
+                type: string
+                example: none
+            x-ratelimit-limit:
+              schema:
+                type: integer
+                example: '100'
+            x-ratelimit-remaining:
+              schema:
+                type: integer
+                example: '96'
+            x-ratelimit-reset:
+              schema:
+                type: integer
+                example: '1751241147'
+            x-render-origin-server:
+              schema:
+                type: string
+                example: Render
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+            cf-cache-status:
+              schema:
+                type: string
+                example: DYNAMIC
+            Server:
+              schema:
+                type: string
+                example: cloudflare
+            CF-RAY:
+              schema:
+                type: string
+                example: 95794dd698972193-CDG
+            alt-svc:
+              schema:
+                type: string
+                example: h3=":443"; ma=86400
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                message: Logged out successfully!
+  /api/v1/me:
+    get:
+      tags:
+        - Users
+      summary: Get Current User Profile
+      description: >-
+        Retrieves the profile information of the currently authenticated user
+        based on the active session or token. Useful for displaying
+        user-specific data on dashboards or profile pages.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Mon, 30 Jun 2025 00:18:08 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '376'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            access-control-allow-origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            content-security-policy:
+              schema:
+                type: string
+                example: >-
+                  default-src 'self';base-uri 'self';font-src 'self' https:
+                  data:;form-action 'self';frame-ancestors 'self';img-src 'self'
+                  data:;object-src 'none';script-src 'self';script-src-attr
+                  'none';style-src 'self' https:
+                  'unsafe-inline';upgrade-insecure-requests
+            cross-origin-opener-policy:
+              schema:
+                type: string
+                example: same-origin
+            cross-origin-resource-policy:
+              schema:
+                type: string
+                example: same-origin
+            etag:
+              schema:
+                type: string
+                example: W/"281-6n9jd4euBUinafZIsRAL55aSfeM"
+            origin-agent-cluster:
+              schema:
+                type: string
+                example: '?1'
+            referrer-policy:
+              schema:
+                type: string
+                example: no-referrer
+            rndr-id:
+              schema:
+                type: string
+                example: 688201f5-c700-4e81
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=31536000; includeSubDomains
+            vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-dns-prefetch-control:
+              schema:
+                type: string
+                example: 'off'
+            x-download-options:
+              schema:
+                type: string
+                example: noopen
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-permitted-cross-domain-policies:
+              schema:
+                type: string
+                example: none
+            x-ratelimit-limit:
+              schema:
+                type: integer
+                example: '100'
+            x-ratelimit-remaining:
+              schema:
+                type: integer
+                example: '93'
+            x-ratelimit-reset:
+              schema:
+                type: integer
+                example: '1751243010'
+            x-render-origin-server:
+              schema:
+                type: string
+                example: Render
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+            cf-cache-status:
+              schema:
+                type: string
+                example: DYNAMIC
+            Server:
+              schema:
+                type: string
+                example: cloudflare
+            CF-RAY:
+              schema:
+                type: string
+                example: 95797c0e2c28d6f6-CDG
+            alt-svc:
+              schema:
+                type: string
+                example: h3=":443"; ma=86400
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                data:
+                  _id: 685e14896fe51087df7aec1a
+                  name: Blessing Duff
+                  email: blessingduff79@gmail.com
+                  role: admin
+                  createdAt: '2025-06-27T03:48:25.747Z'
+                  __v: 0
+                  resetPasswordExpired: '1751241004350'
+                  resetPasswordToken: >-
+                    27771004cd31e6485f4d52013fd14a893ad6ed56c733a4ef51ecbeec78bc26b5
+                  jobPublished:
+                    - _id: 685e2a7f452b6c3b1abf2eaf
+                      title: Mobile App Developer!
+                      user: 685e14896fe51087df7aec1a
+                      postingDate: '2025-06-27T05:22:07.845Z'
+                    - _id: 685fbae6041b0883c83eece7
+                      title: Telecom Network Engineer
+                      user: 685e14896fe51087df7aec1a
+                      postingDate: '2025-06-28T09:50:30.402Z'
+                  id: 685e14896fe51087df7aec1a
+  /api/v1/me/update:
+    put:
+      tags:
+        - Users
+      summary: Update Current User Data
+      description: >-
+        Updates the authenticated user's profile details, such as name and
+        email. The user must be logged in to perform this action.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Uwa-Duff
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Mon, 30 Jun 2025 00:23:31 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '235'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            access-control-allow-origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            content-security-policy:
+              schema:
+                type: string
+                example: >-
+                  default-src 'self';base-uri 'self';font-src 'self' https:
+                  data:;form-action 'self';frame-ancestors 'self';img-src 'self'
+                  data:;object-src 'none';script-src 'self';script-src-attr
+                  'none';style-src 'self' https:
+                  'unsafe-inline';upgrade-insecure-requests
+            cross-origin-opener-policy:
+              schema:
+                type: string
+                example: same-origin
+            cross-origin-resource-policy:
+              schema:
+                type: string
+                example: same-origin
+            etag:
+              schema:
+                type: string
+                example: W/"14c-QmxhXXgRiWMDqt9xdA0doekFMFw"
+            origin-agent-cluster:
+              schema:
+                type: string
+                example: '?1'
+            referrer-policy:
+              schema:
+                type: string
+                example: no-referrer
+            rndr-id:
+              schema:
+                type: string
+                example: 4077a04a-a61b-4f6d
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=31536000; includeSubDomains
+            vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-dns-prefetch-control:
+              schema:
+                type: string
+                example: 'off'
+            x-download-options:
+              schema:
+                type: string
+                example: noopen
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-permitted-cross-domain-policies:
+              schema:
+                type: string
+                example: none
+            x-ratelimit-limit:
+              schema:
+                type: integer
+                example: '100'
+            x-ratelimit-remaining:
+              schema:
+                type: integer
+                example: '99'
+            x-ratelimit-reset:
+              schema:
+                type: integer
+                example: '1751243612'
+            x-render-origin-server:
+              schema:
+                type: string
+                example: Render
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+            cf-cache-status:
+              schema:
+                type: string
+                example: DYNAMIC
+            Server:
+              schema:
+                type: string
+                example: cloudflare
+            CF-RAY:
+              schema:
+                type: string
+                example: 957983f21b5201c5-CDG
+            alt-svc:
+              schema:
+                type: string
+                example: h3=":443"; ma=86400
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                data:
+                  _id: 685e14896fe51087df7aec1a
+                  name: Uwa-Duff
+                  email: blessingduff79@gmail.com
+                  role: admin
+                  createdAt: '2025-06-27T03:48:25.747Z'
+                  __v: 0
+                  resetPasswordExpired: '1751241004350'
+                  resetPasswordToken: >-
+                    27771004cd31e6485f4d52013fd14a893ad6ed56c733a4ef51ecbeec78bc26b5
+                  id: 685e14896fe51087df7aec1a
+  /api/v1/password/update:
+    put:
+      tags:
+        - Users
+      summary: Change Current User Password
+      description: >-
+        Allows the authenticated user to update their password by providing the
+        current password and a new one. Ensures secure password change for
+        active sessions.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                currentPassword: Anu123456789
+                newPassword: Anu12345
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Mon, 30 Jun 2025 00:45:01 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '169'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            access-control-allow-origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            content-security-policy:
+              schema:
+                type: string
+                example: >-
+                  default-src 'self';base-uri 'self';font-src 'self' https:
+                  data:;form-action 'self';frame-ancestors 'self';img-src 'self'
+                  data:;object-src 'none';script-src 'self';script-src-attr
+                  'none';style-src 'self' https:
+                  'unsafe-inline';upgrade-insecure-requests
+            cross-origin-opener-policy:
+              schema:
+                type: string
+                example: same-origin
+            cross-origin-resource-policy:
+              schema:
+                type: string
+                example: same-origin
+            etag:
+              schema:
+                type: string
+                example: W/"c6-CaIS21LvOR02woFledkrlkp7U2I"
+            origin-agent-cluster:
+              schema:
+                type: string
+                example: '?1'
+            referrer-policy:
+              schema:
+                type: string
+                example: no-referrer
+            rndr-id:
+              schema:
+                type: string
+                example: 3a130841-4562-446b
+            Set-Cookie:
+              schema:
+                type: string
+                example: >-
+                  token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NWVmYTA5MWU1OTkyOGQ1MTYzMWM2YSIsImlhdCI6MTc1MTI0NDMwMSwiZXhwIjoxNzUxODQ5MTAxfQ.pixrjyGLwX2eRQdJlLHpvh5CWzyyG12TQ4TvAeIg3KY;
+                  Path=/; Expires=Mon, 07 Jul 2025 00:45:01 GMT; HttpOnly;
+                  SameSite=Strict
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=31536000; includeSubDomains
+            vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-dns-prefetch-control:
+              schema:
+                type: string
+                example: 'off'
+            x-download-options:
+              schema:
+                type: string
+                example: noopen
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-permitted-cross-domain-policies:
+              schema:
+                type: string
+                example: none
+            x-ratelimit-limit:
+              schema:
+                type: integer
+                example: '100'
+            x-ratelimit-remaining:
+              schema:
+                type: integer
+                example: '96'
+            x-ratelimit-reset:
+              schema:
+                type: integer
+                example: '1751244807'
+            x-render-origin-server:
+              schema:
+                type: string
+                example: Render
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+            cf-cache-status:
+              schema:
+                type: string
+                example: DYNAMIC
+            Server:
+              schema:
+                type: string
+                example: cloudflare
+            CF-RAY:
+              schema:
+                type: string
+                example: 9579a36a8bda017f-CDG
+            alt-svc:
+              schema:
+                type: string
+                example: h3=":443"; ma=86400
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                token: >-
+                  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NWVmYTA5MWU1OTkyOGQ1MTYzMWM2YSIsImlhdCI6MTc1MTI0NDMwMSwiZXhwIjoxNzUxODQ5MTAxfQ.pixrjyGLwX2eRQdJlLHpvh5CWzyyG12TQ4TvAeIg3KY
+  /api/v1/me/delete:
+    delete:
+      tags:
+        - Users
+      summary: Delete Current User
+      description: >-
+        Permanently deletes the currently authenticated user from the database,
+        along with all associated files and data. This action is irreversible
+        and requires authentication.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Mon, 30 Jun 2025 00:58:21 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '53'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            access-control-allow-origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            content-security-policy:
+              schema:
+                type: string
+                example: >-
+                  default-src 'self';base-uri 'self';font-src 'self' https:
+                  data:;form-action 'self';frame-ancestors 'self';img-src 'self'
+                  data:;object-src 'none';script-src 'self';script-src-attr
+                  'none';style-src 'self' https:
+                  'unsafe-inline';upgrade-insecure-requests
+            cross-origin-opener-policy:
+              schema:
+                type: string
+                example: same-origin
+            cross-origin-resource-policy:
+              schema:
+                type: string
+                example: same-origin
+            etag:
+              schema:
+                type: string
+                example: W/"3b-Bzn4G/u5jtlr7+zODaZHsioDT30"
+            origin-agent-cluster:
+              schema:
+                type: string
+                example: '?1'
+            referrer-policy:
+              schema:
+                type: string
+                example: no-referrer
+            rndr-id:
+              schema:
+                type: string
+                example: dd15a0a4-47d9-48b9
+            Set-Cookie:
+              schema:
+                type: string
+                example: >-
+                  token=none; Path=/; Expires=Mon, 30 Jun 2025 00:58:21 GMT;
+                  HttpOnly
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=31536000; includeSubDomains
+            vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-dns-prefetch-control:
+              schema:
+                type: string
+                example: 'off'
+            x-download-options:
+              schema:
+                type: string
+                example: noopen
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-permitted-cross-domain-policies:
+              schema:
+                type: string
+                example: none
+            x-ratelimit-limit:
+              schema:
+                type: integer
+                example: '100'
+            x-ratelimit-remaining:
+              schema:
+                type: integer
+                example: '99'
+            x-ratelimit-reset:
+              schema:
+                type: integer
+                example: '1751245701'
+            x-render-origin-server:
+              schema:
+                type: string
+                example: Render
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+            cf-cache-status:
+              schema:
+                type: string
+                example: DYNAMIC
+            Server:
+              schema:
+                type: string
+                example: cloudflare
+            CF-RAY:
+              schema:
+                type: string
+                example: 9579b6f5bd57bb6f-CDG
+            alt-svc:
+              schema:
+                type: string
+                example: h3=":443"; ma=86400
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                message: Your account has been deleted!
+  /api/v1/jobs/applied:
+    get:
+      tags:
+        - Users
+      summary: Show All Jobs Applied By User
+      description: >-
+        Retrieves a list of all jobs the currently authenticated user has
+        applied to. Useful for tracking application history and status.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Mon, 30 Jun 2025 00:48:08 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '624'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            access-control-allow-origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            content-security-policy:
+              schema:
+                type: string
+                example: >-
+                  default-src 'self';base-uri 'self';font-src 'self' https:
+                  data:;form-action 'self';frame-ancestors 'self';img-src 'self'
+                  data:;object-src 'none';script-src 'self';script-src-attr
+                  'none';style-src 'self' https:
+                  'unsafe-inline';upgrade-insecure-requests
+            cross-origin-opener-policy:
+              schema:
+                type: string
+                example: same-origin
+            cross-origin-resource-policy:
+              schema:
+                type: string
+                example: same-origin
+            etag:
+              schema:
+                type: string
+                example: W/"493-qJRYrghu88gYRkFx+qoBnrHfo10"
+            origin-agent-cluster:
+              schema:
+                type: string
+                example: '?1'
+            referrer-policy:
+              schema:
+                type: string
+                example: no-referrer
+            rndr-id:
+              schema:
+                type: string
+                example: 68c8cb2a-e601-45a4
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=31536000; includeSubDomains
+            vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-dns-prefetch-control:
+              schema:
+                type: string
+                example: 'off'
+            x-download-options:
+              schema:
+                type: string
+                example: noopen
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-permitted-cross-domain-policies:
+              schema:
+                type: string
+                example: none
+            x-ratelimit-limit:
+              schema:
+                type: integer
+                example: '100'
+            x-ratelimit-remaining:
+              schema:
+                type: integer
+                example: '95'
+            x-ratelimit-reset:
+              schema:
+                type: integer
+                example: '1751244807'
+            x-render-origin-server:
+              schema:
+                type: string
+                example: Render
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+            cf-cache-status:
+              schema:
+                type: string
+                example: DYNAMIC
+            Server:
+              schema:
+                type: string
+                example: cloudflare
+            CF-RAY:
+              schema:
+                type: string
+                example: 9579a8003fcef4f5-CDG
+            alt-svc:
+              schema:
+                type: string
+                example: h3=":443"; ma=86400
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                results: 1
+                data:
+                  - location:
+                      type: Point
+                      coordinates:
+                        - -84.537304
+                        - 33.882848
+                      formattedAddress: >-
+                        561, Plaza Drive SE, The Highlands, Smyrna, Cobb County,
+                        Georgia, 30082, USA
+                      city: Smyrna
+                      state: Georgia
+                      zipcode: '30082'
+                      country: US
+                    _id: 685fbae6041b0883c83eece7
+                    title: Telecom Network Engineer
+                    description: >-
+                      We are hiring a Telecom Network Engineer experienced in
+                      configuring and maintaining VoIP systems, 5G networks, and
+                      Cisco hardware.
+                    email: networkjobs@telelinknet.com
+                    address: 56 Spectrum Plaza, Atlanta, GA, 30303
+                    company: TeleLink Networks
+                    industry:
+                      - Telecommunication
+                    jobType: Permanent
+                    minEducation: Masters
+                    positions: 3
+                    experience: 5 Years+
+                    salary: 100000
+                    lastDate: '2025-07-05T09:49:46.644Z'
+                    applicantsApplied:
+                      - id: 685efa091e59928d51631c6a
+                        resume: Anu_Adebayo_685fbae6041b0883c83eece7.pdf
+                      - id: 685efa091e59928d51631c6a
+                        resume: Anu_Adebayo_685fbae6041b0883c83eece7.pdf
+                      - id: 685efa091e59928d51631c6a
+                        resume: Anu_Adebayo_685fbae6041b0883c83eece7.pdf
+                    user: 685e14896fe51087df7aec1a
+                    postingDate: '2025-06-28T09:50:30.402Z'
+                    slug: telecom-network-engineer
+                    __v: 0
+  /api/v1/jobs/published:
+    get:
+      tags:
+        - Users
+      summary: Get Jobs Published By Employer
+      description: >-
+        Retrieves all jobs created by the currently authenticated employer or
+        admin. Useful for managing and tracking posted job listings.
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Mon, 30 Jun 2025 01:11:42 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '838'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            access-control-allow-origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            content-security-policy:
+              schema:
+                type: string
+                example: >-
+                  default-src 'self';base-uri 'self';font-src 'self' https:
+                  data:;form-action 'self';frame-ancestors 'self';img-src 'self'
+                  data:;object-src 'none';script-src 'self';script-src-attr
+                  'none';style-src 'self' https:
+                  'unsafe-inline';upgrade-insecure-requests
+            cross-origin-opener-policy:
+              schema:
+                type: string
+                example: same-origin
+            cross-origin-resource-policy:
+              schema:
+                type: string
+                example: same-origin
+            etag:
+              schema:
+                type: string
+                example: W/"6df-XPTStUjA9bQJbBLCh12Mt34aLrY"
+            origin-agent-cluster:
+              schema:
+                type: string
+                example: '?1'
+            referrer-policy:
+              schema:
+                type: string
+                example: no-referrer
+            rndr-id:
+              schema:
+                type: string
+                example: 316c2fa3-6e84-458a
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=31536000; includeSubDomains
+            vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-dns-prefetch-control:
+              schema:
+                type: string
+                example: 'off'
+            x-download-options:
+              schema:
+                type: string
+                example: noopen
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-permitted-cross-domain-policies:
+              schema:
+                type: string
+                example: none
+            x-ratelimit-limit:
+              schema:
+                type: integer
+                example: '100'
+            x-ratelimit-remaining:
+              schema:
+                type: integer
+                example: '98'
+            x-ratelimit-reset:
+              schema:
+                type: integer
+                example: '1751246494'
+            x-render-origin-server:
+              schema:
+                type: string
+                example: Render
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+            cf-cache-status:
+              schema:
+                type: string
+                example: DYNAMIC
+            Server:
+              schema:
+                type: string
+                example: cloudflare
+            CF-RAY:
+              schema:
+                type: string
+                example: 9579ca88bc4674f3-CDG
+            alt-svc:
+              schema:
+                type: string
+                example: h3=":443"; ma=86400
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                results: 2
+                data:
+                  - location:
+                      type: Point
+                      coordinates:
+                        - -84.300315
+                        - 33.806302
+                      formattedAddress: >-
+                        959, Heritage Hills, Toco Hills, Decatur, DeKalb County,
+                        Georgia, 30033, USA
+                      city: Decatur
+                      state: Georgia
+                      zipcode: '30033'
+                      country: US
+                    _id: 685e2a7f452b6c3b1abf2eaf
+                    title: Mobile App Developer!
+                    description: >-
+                      Develop engaging and standardized academic content for
+                      online and classroom use. Expertise in instructional
+                      design and K-12tertiary education is required.
+                    email: jobs@mobilefuture.com
+                    address: 95 Heritage Street, Atlanta, GA, 30303
+                    company: LearnBridge Academy
+                    industry:
+                      - Education/Training
+                    jobType: Contract
+                    minEducation: Masters
+                    positions: 3
+                    experience: 5 Years+
+                    salary: 75000
+                    lastDate: '2025-07-04T05:05:31.870Z'
+                    user: 685e14896fe51087df7aec1a
+                    postingDate: '2025-06-27T05:22:07.845Z'
+                    slug: curriculum-developer
+                    __v: 0
+                  - location:
+                      type: Point
+                      coordinates:
+                        - -84.537304
+                        - 33.882848
+                      formattedAddress: >-
+                        561, Plaza Drive SE, The Highlands, Smyrna, Cobb County,
+                        Georgia, 30082, USA
+                      city: Smyrna
+                      state: Georgia
+                      zipcode: '30082'
+                      country: US
+                    _id: 685fbae6041b0883c83eece7
+                    title: Telecom Network Engineer
+                    description: >-
+                      We are hiring a Telecom Network Engineer experienced in
+                      configuring and maintaining VoIP systems, 5G networks, and
+                      Cisco hardware.
+                    email: networkjobs@telelinknet.com
+                    address: 56 Spectrum Plaza, Atlanta, GA, 30303
+                    company: TeleLink Networks
+                    industry:
+                      - Telecommunication
+                    jobType: Permanent
+                    minEducation: Masters
+                    positions: 3
+                    experience: 5 Years+
+                    salary: 100000
+                    lastDate: '2025-07-05T09:49:46.644Z'
+                    user: 685e14896fe51087df7aec1a
+                    postingDate: '2025-06-28T09:50:30.402Z'
+                    slug: telecom-network-engineer
+                    __v: 1
+  /api/v1/user/685e1a31f130d3f6bf07c169:
+    delete:
+      tags:
+        - Users
+      summary: Delete User(Admin)
+      description: >-
+        Allows an admin to permanently delete any user or employer from the
+        database. This route is restricted to administrators only.
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Mon, 30 Jun 2025 01:14:47 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '58'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            access-control-allow-origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            content-security-policy:
+              schema:
+                type: string
+                example: >-
+                  default-src 'self';base-uri 'self';font-src 'self' https:
+                  data:;form-action 'self';frame-ancestors 'self';img-src 'self'
+                  data:;object-src 'none';script-src 'self';script-src-attr
+                  'none';style-src 'self' https:
+                  'unsafe-inline';upgrade-insecure-requests
+            cross-origin-opener-policy:
+              schema:
+                type: string
+                example: same-origin
+            cross-origin-resource-policy:
+              schema:
+                type: string
+                example: same-origin
+            etag:
+              schema:
+                type: string
+                example: W/"38-wkMXwavAQP3YwNtTLjoETpqj2Xw"
+            origin-agent-cluster:
+              schema:
+                type: string
+                example: '?1'
+            referrer-policy:
+              schema:
+                type: string
+                example: no-referrer
+            rndr-id:
+              schema:
+                type: string
+                example: fc0d900f-8cd1-477c
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=31536000; includeSubDomains
+            vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-dns-prefetch-control:
+              schema:
+                type: string
+                example: 'off'
+            x-download-options:
+              schema:
+                type: string
+                example: noopen
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-permitted-cross-domain-policies:
+              schema:
+                type: string
+                example: none
+            x-ratelimit-limit:
+              schema:
+                type: integer
+                example: '100'
+            x-ratelimit-remaining:
+              schema:
+                type: integer
+                example: '97'
+            x-ratelimit-reset:
+              schema:
+                type: integer
+                example: '1751246494'
+            x-render-origin-server:
+              schema:
+                type: string
+                example: Render
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+            cf-cache-status:
+              schema:
+                type: string
+                example: DYNAMIC
+            Server:
+              schema:
+                type: string
+                example: cloudflare
+            CF-RAY:
+              schema:
+                type: string
+                example: 9579cf09af0dd554-CDG
+            alt-svc:
+              schema:
+                type: string
+                example: h3=":443"; ma=86400
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                message: User just deleted by ADMIN!
+  /api/v1/users:
+    get:
+      tags:
+        - Users
+      summary: Show all users (Admin)
+      description: >-
+        This request retrieves a list of all registered users in the system. It
+        is accessible only by an Admin. The response includes user details such
+        as ID, name, email, role, and registration date.
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Mon, 30 Jun 2025 01:16:42 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '235'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            access-control-allow-origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            content-security-policy:
+              schema:
+                type: string
+                example: >-
+                  default-src 'self';base-uri 'self';font-src 'self' https:
+                  data:;form-action 'self';frame-ancestors 'self';img-src 'self'
+                  data:;object-src 'none';script-src 'self';script-src-attr
+                  'none';style-src 'self' https:
+                  'unsafe-inline';upgrade-insecure-requests
+            cross-origin-opener-policy:
+              schema:
+                type: string
+                example: same-origin
+            cross-origin-resource-policy:
+              schema:
+                type: string
+                example: same-origin
+            etag:
+              schema:
+                type: string
+                example: W/"152-fJM/rMTt22thW6G8y12gkud97yc"
+            origin-agent-cluster:
+              schema:
+                type: string
+                example: '?1'
+            referrer-policy:
+              schema:
+                type: string
+                example: no-referrer
+            rndr-id:
+              schema:
+                type: string
+                example: 2e4fdb78-bb4b-4b85
+            strict-transport-security:
+              schema:
+                type: string
+                example: max-age=31536000; includeSubDomains
+            vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            x-content-type-options:
+              schema:
+                type: string
+                example: nosniff
+            x-dns-prefetch-control:
+              schema:
+                type: string
+                example: 'off'
+            x-download-options:
+              schema:
+                type: string
+                example: noopen
+            x-frame-options:
+              schema:
+                type: string
+                example: SAMEORIGIN
+            x-permitted-cross-domain-policies:
+              schema:
+                type: string
+                example: none
+            x-ratelimit-limit:
+              schema:
+                type: integer
+                example: '100'
+            x-ratelimit-remaining:
+              schema:
+                type: integer
+                example: '96'
+            x-ratelimit-reset:
+              schema:
+                type: integer
+                example: '1751246494'
+            x-render-origin-server:
+              schema:
+                type: string
+                example: Render
+            x-xss-protection:
+              schema:
+                type: integer
+                example: '0'
+            cf-cache-status:
+              schema:
+                type: string
+                example: DYNAMIC
+            Server:
+              schema:
+                type: string
+                example: cloudflare
+            CF-RAY:
+              schema:
+                type: string
+                example: 9579d1d7ec2e2297-CDG
+            alt-svc:
+              schema:
+                type: string
+                example: h3=":443"; ma=86400
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                results: 1
+                data:
+                  - _id: 685e14896fe51087df7aec1a
+                    name: Uwa-Duff
+                    email: blessingduff79@gmail.com
+                    role: admin
+                    createdAt: '2025-06-27T03:48:25.747Z'
+                    resetPasswordExpired: '1751241004350'
+                    resetPasswordToken: >-
+                      27771004cd31e6485f4d52013fd14a893ad6ed56c733a4ef51ecbeec78bc26b5
+                    id: 685e14896fe51087df7aec1a

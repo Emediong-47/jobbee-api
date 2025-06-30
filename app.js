@@ -15,6 +15,8 @@ const { xss } = require("express-xss-sanitizer");
 const hpp = require("hpp");
 const cors = require("cors");
 const sanitizer = require("perfect-express-sanitizer");
+const swaggerUi = require("swagger-ui-express");
+const YAML = require("yamljs");
 
 dotenv.config({path : "config/config.env"});
 
@@ -35,8 +37,9 @@ const limiter = rateLimit({
     limit: 100
 });
 
+const swaggerDocument = YAML.load("./collection/swagger.yml");
+
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static("public"));
 app.use(express.json());
 app.use(cookieParser());
 app.use(fileUpload());
@@ -60,6 +63,9 @@ app.use(cors());
 app.use("/api/v1", jobs);
 app.use("/api/v1", auth);
 app.use("/api/v1", user)
+app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerDocument, {
+    customSiteTitle: "Jobbee-API"
+}));
 
 app.all("/{*splat}", (req, res, next) => {
     next(new ErrorHandler(`${req.originalUrl} route not found`, 404));

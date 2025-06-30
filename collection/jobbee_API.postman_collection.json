@@ -1,0 +1,3840 @@
+{
+	"info": {
+		"_postman_id": "31b89694-0c94-454f-9ddb-873f5f39fb78",
+		"name": "Jobbee API",
+		"description": "**Jobbee API** is a RESTful backend API built with Node.js, designed to manage job listings, user accounts, authentication, and related features. It provides endpoints for job creation, retrieval, updating, and deletion, as well as user registration, login, role-based access control, and more, making it ideal for modern job board applications.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22929924"
+	},
+	"item": [
+		{
+			"name": "Jobs",
+			"item": [
+				{
+					"name": "Get all jobs",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://jobbee-api-6327.onrender.com/api/v1/jobs",
+							"protocol": "https",
+							"host": [
+								"jobbee-api-6327",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"jobs"
+							]
+						},
+						"description": "Retrieves all job listings stored in the database."
+					},
+					"response": [
+						{
+							"name": "Get all jobs",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://jobbee-api-6327.onrender.com/api/v1/jobs",
+									"protocol": "https",
+									"host": [
+										"jobbee-api-6327",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"v1",
+										"jobs"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 27 Jun 2025 20:09:39 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "565"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "content-security-policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "cross-origin-opener-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "cross-origin-resource-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"386-keWvq99i4Grdwssu+m4b8l/l5FE\""
+								},
+								{
+									"key": "origin-agent-cluster",
+									"value": "?1"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "rndr-id",
+									"value": "d7f831e3-f7d4-4ed5"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "x-permitted-cross-domain-policies",
+									"value": "none"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "100"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "97"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "1751055458"
+								},
+								{
+									"key": "x-render-origin-server",
+									"value": "Render"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "0"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "9567954fda49bce8-CDG"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"results\": 1,\n    \"data\": [\n        {\n            \"location\": {\n                \"type\": \"Point\",\n                \"coordinates\": [\n                    -84.300315,\n                    33.806302\n                ],\n                \"formattedAddress\": \"959, Heritage Hills, Toco Hills, Decatur, DeKalb County, Georgia, 30033, USA\",\n                \"city\": \"Decatur\",\n                \"state\": \"Georgia\",\n                \"zipcode\": \"30033\",\n                \"country\": \"US\"\n            },\n            \"_id\": \"685e2a7f452b6c3b1abf2eaf\",\n            \"title\": \"Curriculum Developer\",\n            \"description\": \"Develop engaging and standardized academic content for online and classroom use. Expertise in instructional design and K-12tertiary education is required.\",\n            \"email\": \"recruitment@learnbridge.org\",\n            \"address\": \"95 Heritage Street, Atlanta, GA, 30303\",\n            \"company\": \"LearnBridge Academy\",\n            \"industry\": [\n                \"Education/Training\"\n            ],\n            \"jobType\": \"Contract\",\n            \"minEducation\": \"Masters\",\n            \"positions\": 3,\n            \"experience\": \"5 Years+\",\n            \"salary\": 75000,\n            \"lastDate\": \"2025-07-04T05:05:31.870Z\",\n            \"user\": \"685e14896fe51087df7aec1a\",\n            \"postingDate\": \"2025-06-27T05:22:07.845Z\",\n            \"slug\": \"curriculum-developer\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Create New Job",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTAyNmM2MGM5NmNkYTNhZGQzNDBiOCIsImlhdCI6MTc1MDEyMzg5MSwiZXhwIjoxNzUwNzI4NjkxfQ.h_7PqgE91i5Lt6wAB6e6Wb0T7de-zC4QDW1YjsU6Fmg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Banking Operations Officer\",\r\n    \"description\": \"Manage day-to-day bank transactions, process documentation, and ensure regulatory compliance. Strong understanding of core banking systems and customer service is essential.\",\r\n    \"email\": \"hr@unitybanking.com\",\r\n    \"address\": \"300 Crescent Tower, Chicago, IL, 60606\",\r\n    \"company\": \"Unity Banking Corp\",\r\n    \"industry\": [\r\n        \"Banking\"\r\n    ],\r\n    \"jobType\": \"Permanent\",\r\n    \"minEducation\": \"Bachelors\",\r\n    \"positions\": 1,\r\n    \"experience\": \"2 Years - 5 Years\",\r\n    \"salary\": \"70000\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://jobbee-api-6327.onrender.com/api/v1/job/new",
+							"protocol": "https",
+							"host": [
+								"jobbee-api-6327",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"job",
+								"new"
+							]
+						},
+						"description": "Creates and adds a new job posting to the database. The user must be authenticated and have an employer role to access this route."
+					},
+					"response": [
+						{
+							"name": "Create New Job",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTAyNmM2MGM5NmNkYTNhZGQzNDBiOCIsImlhdCI6MTc1MDEyMzg5MSwiZXhwIjoxNzUwNzI4NjkxfQ.h_7PqgE91i5Lt6wAB6e6Wb0T7de-zC4QDW1YjsU6Fmg",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Banking Operations Officer\",\r\n    \"description\": \"Manage day-to-day bank transactions, process documentation, and ensure regulatory compliance. Strong understanding of core banking systems and customer service is essential.\",\r\n    \"email\": \"hr@unitybanking.com\",\r\n    \"address\": \"300 Crescent Tower, Chicago, IL, 60606\",\r\n    \"company\": \"Unity Banking Corp\",\r\n    \"industry\": [\r\n        \"Banking\"\r\n    ],\r\n    \"jobType\": \"Permanent\",\r\n    \"minEducation\": \"Bachelors\",\r\n    \"positions\": 1,\r\n    \"experience\": \"2 Years - 5 Years\",\r\n    \"salary\": \"70000\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://jobbee-api-6327.onrender.com/api/v1/job/new",
+									"protocol": "https",
+									"host": [
+										"jobbee-api-6327",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"v1",
+										"job",
+										"new"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 27 Jun 2025 20:13:22 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "600"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "content-security-policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "cross-origin-opener-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "cross-origin-resource-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"3c2-pttey+Gy/deMl1wLQs1+q4s1hTI\""
+								},
+								{
+									"key": "origin-agent-cluster",
+									"value": "?1"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "rndr-id",
+									"value": "77a1e501-f810-429d"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "x-permitted-cross-domain-policies",
+									"value": "none"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "100"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "95"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "1751055458"
+								},
+								{
+									"key": "x-render-origin-server",
+									"value": "Render"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "0"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "95679ac2680cbb24-CDG"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Job Created!\",\n    \"data\": {\n        \"title\": \"Banking Operations Officer\",\n        \"description\": \"Manage day-to-day bank transactions, process documentation, and ensure regulatory compliance. Strong understanding of core banking systems and customer service is essential.\",\n        \"email\": \"hr@unitybanking.com\",\n        \"address\": \"300 Crescent Tower, Chicago, IL, 60606\",\n        \"location\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n                -87.8632769,\n                42.0936067\n            ],\n            \"formattedAddress\": \"300, Crescent Lane, Northfield, Cook County, Illinois, 60026, USA\",\n            \"city\": \"Northfield\",\n            \"state\": \"Illinois\",\n            \"zipcode\": \"60026\",\n            \"country\": \"US\"\n        },\n        \"company\": \"Unity Banking Corp\",\n        \"industry\": [\n            \"Banking\"\n        ],\n        \"jobType\": \"Permanent\",\n        \"minEducation\": \"Bachelors\",\n        \"positions\": 1,\n        \"experience\": \"2 Years - 5 Years\",\n        \"salary\": 70000,\n        \"lastDate\": \"2025-07-04T20:07:34.859Z\",\n        \"applicantsApplied\": [],\n        \"user\": \"685e14896fe51087df7aec1a\",\n        \"_id\": \"685efb611e59928d51631c74\",\n        \"postingDate\": \"2025-06-27T20:13:21.914Z\",\n        \"slug\": \"banking-operations-officer\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get job within Radius/Distance",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://jobbee-api-6327.onrender.com/api/v1/jobs/94109/33",
+							"protocol": "https",
+							"host": [
+								"jobbee-api-6327",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"jobs",
+								"94109",
+								"33"
+							]
+						},
+						"description": "Retrieves all jobs located within a specified distance (radius) from a given geographical point, based on latitude and longitude coordinates. Useful for location-based job filtering."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Job",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://jobbee-api-6327.onrender.com/api/v1/job/685efb611e59928d51631c74",
+							"protocol": "https",
+							"host": [
+								"jobbee-api-6327",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"job",
+								"685efb611e59928d51631c74"
+							]
+						},
+						"description": "Deletes a specific job from the database using its unique ID. The user must be authenticated and authorized as the employer who created the job."
+					},
+					"response": [
+						{
+							"name": "Delete Job",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://jobbee-api-6327.onrender.com/api/v1/job/685efb611e59928d51631c74",
+									"protocol": "https",
+									"host": [
+										"jobbee-api-6327",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"v1",
+										"job",
+										"685efb611e59928d51631c74"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 28 Jun 2025 10:17:41 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "content-security-policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "cross-origin-opener-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "cross-origin-resource-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"36-6YdTTqVyo4+GRM5si3zz6TRgJr0\""
+								},
+								{
+									"key": "origin-agent-cluster",
+									"value": "?1"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "rndr-id",
+									"value": "561bf92b-eea4-4e9a"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "x-permitted-cross-domain-policies",
+									"value": "none"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "100"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "97"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "1751106370"
+								},
+								{
+									"key": "x-render-origin-server",
+									"value": "Render"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "0"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "956c6f8f3d400194-CDG"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Job deleted successfully!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Job",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Mobile App Developer!\",\r\n    \"email\": \"jobs@mobilefuture.com\"\r\n}"
+						},
+						"url": {
+							"raw": "https://jobbee-api-6327.onrender.com/api/v1/job/685e2a7f452b6c3b1abf2eaf",
+							"protocol": "https",
+							"host": [
+								"jobbee-api-6327",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"job",
+								"685e2a7f452b6c3b1abf2eaf"
+							]
+						},
+						"description": "Updates the details of an existing job in the database using its unique ID. The user must be authenticated and must be the employer who originally posted the job."
+					},
+					"response": [
+						{
+							"name": "Update Job",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Mobile App Developer!\",\r\n    \"email\": \"jobs@mobilefuture.com\"\r\n}"
+								},
+								"url": {
+									"raw": "https://jobbee-api-6327.onrender.com/api/v1/job/685e2a7f452b6c3b1abf2eaf",
+									"protocol": "https",
+									"host": [
+										"jobbee-api-6327",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"v1",
+										"job",
+										"685e2a7f452b6c3b1abf2eaf"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 28 Jun 2025 10:21:11 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "588"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "content-security-policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "cross-origin-opener-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "cross-origin-resource-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"3ab-aJv3BDKnOuBUbNbhBsq5qeZfD2E\""
+								},
+								{
+									"key": "origin-agent-cluster",
+									"value": "?1"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "rndr-id",
+									"value": "a6c73bc6-ffda-4d80"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "x-permitted-cross-domain-policies",
+									"value": "none"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "100"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "95"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "1751106370"
+								},
+								{
+									"key": "x-render-origin-server",
+									"value": "Render"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "0"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "956c74aceb2dd0b6-CDG"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Job detail is successfully updated!\",\n    \"data\": {\n        \"location\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n                -84.300315,\n                33.806302\n            ],\n            \"formattedAddress\": \"959, Heritage Hills, Toco Hills, Decatur, DeKalb County, Georgia, 30033, USA\",\n            \"city\": \"Decatur\",\n            \"state\": \"Georgia\",\n            \"zipcode\": \"30033\",\n            \"country\": \"US\"\n        },\n        \"_id\": \"685e2a7f452b6c3b1abf2eaf\",\n        \"title\": \"Mobile App Developer!\",\n        \"description\": \"Develop engaging and standardized academic content for online and classroom use. Expertise in instructional design and K-12tertiary education is required.\",\n        \"email\": \"jobs@mobilefuture.com\",\n        \"address\": \"95 Heritage Street, Atlanta, GA, 30303\",\n        \"company\": \"LearnBridge Academy\",\n        \"industry\": [\n            \"Education/Training\"\n        ],\n        \"jobType\": \"Contract\",\n        \"minEducation\": \"Masters\",\n        \"positions\": 3,\n        \"experience\": \"5 Years+\",\n        \"salary\": 75000,\n        \"lastDate\": \"2025-07-04T05:05:31.870Z\",\n        \"user\": \"685e14896fe51087df7aec1a\",\n        \"postingDate\": \"2025-06-27T05:22:07.845Z\",\n        \"slug\": \"curriculum-developer\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Single Job",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://jobbee-api-6327.onrender.com/api/v1/job/685e2a7f452b6c3b1abf2eaf/curriculum-developer",
+							"protocol": "https",
+							"host": [
+								"jobbee-api-6327",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"job",
+								"685e2a7f452b6c3b1abf2eaf",
+								"curriculum-developer"
+							]
+						},
+						"description": "Retrieves detailed information about a specific job by providing its unique ID and slug. Useful for displaying full job details on a dedicated page."
+					},
+					"response": [
+						{
+							"name": "Get Single Job",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://jobbee-api-6327.onrender.com/api/v1/job/685e2a7f452b6c3b1abf2eaf/curriculum-developer",
+									"protocol": "https",
+									"host": [
+										"jobbee-api-6327",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"v1",
+										"job",
+										"685e2a7f452b6c3b1abf2eaf",
+										"curriculum-developer"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 28 Jun 2025 10:25:53 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "586"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "content-security-policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "cross-origin-opener-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "cross-origin-resource-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"3bc-oTuQ6bkWmyLhJtbMWc8PJTMwx7Y\""
+								},
+								{
+									"key": "origin-agent-cluster",
+									"value": "?1"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "rndr-id",
+									"value": "ec237ee1-0de1-49fa"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "x-permitted-cross-domain-policies",
+									"value": "none"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "100"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "94"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "1751106370"
+								},
+								{
+									"key": "x-render-origin-server",
+									"value": "Render"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "0"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "956c7b942f053c86-CDG"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"location\": {\n                \"type\": \"Point\",\n                \"coordinates\": [\n                    -84.300315,\n                    33.806302\n                ],\n                \"formattedAddress\": \"959, Heritage Hills, Toco Hills, Decatur, DeKalb County, Georgia, 30033, USA\",\n                \"city\": \"Decatur\",\n                \"state\": \"Georgia\",\n                \"zipcode\": \"30033\",\n                \"country\": \"US\"\n            },\n            \"_id\": \"685e2a7f452b6c3b1abf2eaf\",\n            \"title\": \"Mobile App Developer!\",\n            \"description\": \"Develop engaging and standardized academic content for online and classroom use. Expertise in instructional design and K-12tertiary education is required.\",\n            \"email\": \"jobs@mobilefuture.com\",\n            \"address\": \"95 Heritage Street, Atlanta, GA, 30303\",\n            \"company\": \"LearnBridge Academy\",\n            \"industry\": [\n                \"Education/Training\"\n            ],\n            \"jobType\": \"Contract\",\n            \"minEducation\": \"Masters\",\n            \"positions\": 3,\n            \"experience\": \"5 Years+\",\n            \"salary\": 75000,\n            \"lastDate\": \"2025-07-04T05:05:31.870Z\",\n            \"user\": {\n                \"_id\": \"685e14896fe51087df7aec1a\",\n                \"name\": \"Blessing Duff\",\n                \"id\": \"685e14896fe51087df7aec1a\"\n            },\n            \"postingDate\": \"2025-06-27T05:22:07.845Z\",\n            \"slug\": \"curriculum-developer\",\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Topic Stats",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://jobbee-api-6327.onrender.com/api/v1/stats/developer",
+							"protocol": "https",
+							"host": [
+								"jobbee-api-6327",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"stats",
+								"developer"
+							]
+						},
+						"description": "Returns aggregated statistics related to a specific job topic, such as the number of jobs available, average positions, and salary trends. Useful for analytics and insights."
+					},
+					"response": [
+						{
+							"name": "Get Topic Stats",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://jobbee-api-6327.onrender.com/api/v1/stats/developer",
+									"protocol": "https",
+									"host": [
+										"jobbee-api-6327",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"v1",
+										"stats",
+										"developer"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 29 Jun 2025 05:16:54 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "101"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "content-security-policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "cross-origin-opener-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "cross-origin-resource-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"84-Tyg3iloJkM+bN3syFEVyIDDMXrc\""
+								},
+								{
+									"key": "origin-agent-cluster",
+									"value": "?1"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "rndr-id",
+									"value": "84a3af71-d2e7-4a63"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "x-permitted-cross-domain-policies",
+									"value": "none"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "100"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "99"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "1751174813"
+								},
+								{
+									"key": "x-render-origin-server",
+									"value": "Render"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "0"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "9572f3ca4b976f87-CDG"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"_id\": \"5 YEARS+\",\n            \"totalJobs\": 1,\n            \"avgPosition\": 3,\n            \"averageSalary\": 75000,\n            \"minSalary\": 75000,\n            \"maxSalary\": 75000\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Apply For Job With Resume",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Emediong_Eshiet/Downloads/202440127995CF.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{DOMAIN}}/api/v1/job/685a192f61150febb0383bce/apply?",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"job",
+								"685a192f61150febb0383bce",
+								"apply"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null
+								}
+							]
+						},
+						"description": "Apply to any job by uploading resume"
+					},
+					"response": []
+				}
+			],
+			"description": "All request related to jobs like: Create, Read, Update, Delete, Apply to jobs etc."
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"token\", pm.response.json().token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"blessingduff79@gmail.com\",\r\n    \"password\": \"Bless12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://jobbee-api-6327.onrender.com/api/v1/login",
+							"protocol": "https",
+							"host": [
+								"jobbee-api-6327",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"login"
+							]
+						},
+						"description": "Login User with email and password"
+					},
+					"response": [
+						{
+							"name": "Login User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"blessingduff79@gmail.com\",\r\n    \"password\": \"Bless12345\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://jobbee-api-6327.onrender.com/api/v1/login",
+									"protocol": "https",
+									"host": [
+										"jobbee-api-6327",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"v1",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 27 Jun 2025 18:41:18 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "173"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "content-security-policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "cross-origin-opener-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "cross-origin-resource-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"c6-Hs+IfdlLIRzvxhMDwZwqFl3VBfM\""
+								},
+								{
+									"key": "origin-agent-cluster",
+									"value": "?1"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "rndr-id",
+									"value": "80a1b87d-ae05-4bea"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NWUxNDg5NmZlNTEwODdkZjdhZWMxYSIsImlhdCI6MTc1MTA0OTY3OCwiZXhwIjoxNzUxNjU0NDc4fQ.ZkPaTz92Z_0Mi-wEg1kFA1hBfML6Ln_BQXyTGr4EwEU; Path=/; Expires=Fri, 04 Jul 2025 18:41:18 GMT; HttpOnly; SameSite=Strict"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "x-permitted-cross-domain-policies",
+									"value": "none"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "100"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "96"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "1751050164"
+								},
+								{
+									"key": "x-render-origin-server",
+									"value": "Render"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "0"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "956713e67bbfbb60-CDG"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NWUxNDg5NmZlNTEwODdkZjdhZWMxYSIsImlhdCI6MTc1MTA0OTY3OCwiZXhwIjoxNzUxNjU0NDc4fQ.ZkPaTz92Z_0Mi-wEg1kFA1hBfML6Ln_BQXyTGr4EwEU\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Register User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Anu Adebayo\",\r\n    \"email\": \"adebayoanu118@gmail.com\",\r\n    \"password\": \"Anu12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://jobbee-api-6327.onrender.com/api/v1/register",
+							"protocol": "https",
+							"host": [
+								"jobbee-api-6327",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"register"
+							]
+						},
+						"description": "Register user with email, password, name and role. Encrypted Password will be save in database."
+					},
+					"response": [
+						{
+							"name": "Register User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Anu Adebayo\",\r\n    \"email\": \"adebayoanu118@gmail.com\",\r\n    \"password\": \"Anu12345\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://jobbee-api-6327.onrender.com/api/v1/register",
+									"protocol": "https",
+									"host": [
+										"jobbee-api-6327",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"v1",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 27 Jun 2025 20:07:39 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "170"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "content-security-policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "cross-origin-opener-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "cross-origin-resource-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"c6-MfVHGe5Y4jWllMyRlVujTBpaG44\""
+								},
+								{
+									"key": "origin-agent-cluster",
+									"value": "?1"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "rndr-id",
+									"value": "dc264590-3f1e-4b7e"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NWVmYTA5MWU1OTkyOGQ1MTYzMWM2YSIsImlhdCI6MTc1MTA1NDg1OCwiZXhwIjoxNzUxNjU5NjU4fQ.IW6gnerY5KQhfMwEgueFuK0xwsrqMLntEILNKvAYKw4; Path=/; Expires=Fri, 04 Jul 2025 20:07:38 GMT; HttpOnly; SameSite=Strict"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "x-permitted-cross-domain-policies",
+									"value": "none"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "100"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "99"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "1751055458"
+								},
+								{
+									"key": "x-render-origin-server",
+									"value": "Render"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "0"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "956791d0aabc75de-CDG"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NWVmYTA5MWU1OTkyOGQ1MTYzMWM2YSIsImlhdCI6MTc1MTA1NDg1OCwiZXhwIjoxNzUxNjU5NjU4fQ.IW6gnerY5KQhfMwEgueFuK0xwsrqMLntEILNKvAYKw4\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Send Password Reset Email",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"adebayoanu118@gmail.com\"\r\n}"
+						},
+						"url": {
+							"raw": "https://jobbee-api-6327.onrender.com/api/v1/password/forgot",
+							"protocol": "https",
+							"host": [
+								"jobbee-api-6327",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"password",
+								"forgot"
+							]
+						},
+						"description": "Sends a password reset email to the user’s registered email address. The email contains a secure token with an expiration time, which can be used to reset the password."
+					},
+					"response": [
+						{
+							"name": "Send Password Reset Email",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"adebayoanu118@gmail.com\"\r\n}"
+								},
+								"url": {
+									"raw": "https://jobbee-api-6327.onrender.com/api/v1/password/forgot",
+									"protocol": "https",
+									"host": [
+										"jobbee-api-6327",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"v1",
+										"password",
+										"forgot"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 29 Jun 2025 23:42:58 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "72"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "content-security-policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "cross-origin-opener-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "cross-origin-resource-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"50-a8oLL9rharjEqF51U/+dv6UQz/8\""
+								},
+								{
+									"key": "origin-agent-cluster",
+									"value": "?1"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "rndr-id",
+									"value": "c318f8e9-c1a6-4fb5"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "x-permitted-cross-domain-policies",
+									"value": "none"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "100"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "98"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "1751241147"
+								},
+								{
+									"key": "x-render-origin-server",
+									"value": "Render"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "0"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "9579488108049ea9-CDG"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Email sent successfully to: adebayoanu118@gmail.com\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Reset New Password",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"Anu123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://jobbee-api-6327.onrender.com/api/v1/password/reset/92f388e7eb403ed25df6f3069378cafd7c269dbe",
+							"protocol": "http",
+							"host": [
+								"jobbee-api-6327",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"password",
+								"reset",
+								"92f388e7eb403ed25df6f3069378cafd7c269dbe"
+							]
+						},
+						"description": "Resets the password for a user account using a valid reset token. This route is typically accessed via the link sent to the user's email and allows the user to set a new password."
+					},
+					"response": [
+						{
+							"name": "Reset New Password",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"password\": \"Anu123456789\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://jobbee-api-6327.onrender.com/api/v1/password/reset/92f388e7eb403ed25df6f3069378cafd7c269dbe",
+									"protocol": "http",
+									"host": [
+										"jobbee-api-6327",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"v1",
+										"password",
+										"reset",
+										"92f388e7eb403ed25df6f3069378cafd7c269dbe"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 29 Jun 2025 23:44:14 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "170"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "content-security-policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "cross-origin-opener-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "cross-origin-resource-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"c6-iXWMPlBKzp1Uv7pUmKtyOEEhrQ8\""
+								},
+								{
+									"key": "origin-agent-cluster",
+									"value": "?1"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "rndr-id",
+									"value": "a12f93e5-0a8c-417d"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NWVmYTA5MWU1OTkyOGQ1MTYzMWM2YSIsImlhdCI6MTc1MTI0MDY1NCwiZXhwIjoxNzUxODQ1NDU0fQ.6bVha9hQFw9D-1eDjtSFz2vs5XimZLQ8q-bOdlqtDSI; Path=/; Expires=Sun, 06 Jul 2025 23:44:14 GMT; HttpOnly; SameSite=Strict"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "x-permitted-cross-domain-policies",
+									"value": "none"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "100"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "97"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "1751241147"
+								},
+								{
+									"key": "x-render-origin-server",
+									"value": "Render"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "0"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "95794a64f8f89ea9-CDG"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NWVmYTA5MWU1OTkyOGQ1MTYzMWM2YSIsImlhdCI6MTc1MTI0MDY1NCwiZXhwIjoxNzUxODQ1NDU0fQ.6bVha9hQFw9D-1eDjtSFz2vs5XimZLQ8q-bOdlqtDSI\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Logout User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"token\", pm.response.json().token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://jobbee-api-6327.onrender.com/api/v1/logout",
+							"protocol": "https",
+							"host": [
+								"jobbee-api-6327",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logout"
+							]
+						},
+						"description": "Logs the user out of the application by clearing the authentication token and expiring the associated cookie. This ensures the user session is securely terminated."
+					},
+					"response": [
+						{
+							"name": "Logout User",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://jobbee-api-6327.onrender.com/api/v1/logout",
+									"protocol": "https",
+									"host": [
+										"jobbee-api-6327",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"v1",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 29 Jun 2025 23:46:35 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "content-security-policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "cross-origin-opener-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "cross-origin-resource-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"35-vOBgWXGIRpc4Ao1fXkzLcYmgyu0\""
+								},
+								{
+									"key": "origin-agent-cluster",
+									"value": "?1"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "rndr-id",
+									"value": "f3c7ab70-9925-47aa"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "token=none; Path=/; Expires=Sun, 29 Jun 2025 23:46:35 GMT; HttpOnly"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "x-permitted-cross-domain-policies",
+									"value": "none"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "100"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "96"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "1751241147"
+								},
+								{
+									"key": "x-render-origin-server",
+									"value": "Render"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "0"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "95794dd698972193-CDG"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Logged out successfully!\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Includes all routes related to user authentication and account management, such as user registration, login, logout, password reset, and account recovery. These endpoints handle secure user access and identity verification."
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get Current User Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://jobbee-api-6327.onrender.com/api/v1/me",
+							"protocol": "https",
+							"host": [
+								"jobbee-api-6327",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"me"
+							]
+						},
+						"description": "Retrieves the profile information of the currently authenticated user based on the active session or token. Useful for displaying user-specific data on dashboards or profile pages."
+					},
+					"response": [
+						{
+							"name": "Get Current User Profile",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://jobbee-api-6327.onrender.com/api/v1/me",
+									"protocol": "https",
+									"host": [
+										"jobbee-api-6327",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"v1",
+										"me"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 30 Jun 2025 00:18:08 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "376"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "content-security-policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "cross-origin-opener-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "cross-origin-resource-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"281-6n9jd4euBUinafZIsRAL55aSfeM\""
+								},
+								{
+									"key": "origin-agent-cluster",
+									"value": "?1"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "rndr-id",
+									"value": "688201f5-c700-4e81"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "x-permitted-cross-domain-policies",
+									"value": "none"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "100"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "93"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "1751243010"
+								},
+								{
+									"key": "x-render-origin-server",
+									"value": "Render"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "0"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "95797c0e2c28d6f6-CDG"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": {\n        \"_id\": \"685e14896fe51087df7aec1a\",\n        \"name\": \"Blessing Duff\",\n        \"email\": \"blessingduff79@gmail.com\",\n        \"role\": \"admin\",\n        \"createdAt\": \"2025-06-27T03:48:25.747Z\",\n        \"__v\": 0,\n        \"resetPasswordExpired\": \"1751241004350\",\n        \"resetPasswordToken\": \"27771004cd31e6485f4d52013fd14a893ad6ed56c733a4ef51ecbeec78bc26b5\",\n        \"jobPublished\": [\n            {\n                \"_id\": \"685e2a7f452b6c3b1abf2eaf\",\n                \"title\": \"Mobile App Developer!\",\n                \"user\": \"685e14896fe51087df7aec1a\",\n                \"postingDate\": \"2025-06-27T05:22:07.845Z\"\n            },\n            {\n                \"_id\": \"685fbae6041b0883c83eece7\",\n                \"title\": \"Telecom Network Engineer\",\n                \"user\": \"685e14896fe51087df7aec1a\",\n                \"postingDate\": \"2025-06-28T09:50:30.402Z\"\n            }\n        ],\n        \"id\": \"685e14896fe51087df7aec1a\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Current User Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Uwa-Duff\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://jobbee-api-6327.onrender.com/api/v1/me/update",
+							"protocol": "https",
+							"host": [
+								"jobbee-api-6327",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"me",
+								"update"
+							]
+						},
+						"description": "Updates the authenticated user's profile details, such as name and email. The user must be logged in to perform this action."
+					},
+					"response": [
+						{
+							"name": "Update Current User Data",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Uwa-Duff\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://jobbee-api-6327.onrender.com/api/v1/me/update",
+									"protocol": "https",
+									"host": [
+										"jobbee-api-6327",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"v1",
+										"me",
+										"update"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 30 Jun 2025 00:23:31 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "235"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "content-security-policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "cross-origin-opener-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "cross-origin-resource-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"14c-QmxhXXgRiWMDqt9xdA0doekFMFw\""
+								},
+								{
+									"key": "origin-agent-cluster",
+									"value": "?1"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "rndr-id",
+									"value": "4077a04a-a61b-4f6d"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "x-permitted-cross-domain-policies",
+									"value": "none"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "100"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "99"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "1751243612"
+								},
+								{
+									"key": "x-render-origin-server",
+									"value": "Render"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "0"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "957983f21b5201c5-CDG"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": {\n        \"_id\": \"685e14896fe51087df7aec1a\",\n        \"name\": \"Uwa-Duff\",\n        \"email\": \"blessingduff79@gmail.com\",\n        \"role\": \"admin\",\n        \"createdAt\": \"2025-06-27T03:48:25.747Z\",\n        \"__v\": 0,\n        \"resetPasswordExpired\": \"1751241004350\",\n        \"resetPasswordToken\": \"27771004cd31e6485f4d52013fd14a893ad6ed56c733a4ef51ecbeec78bc26b5\",\n        \"id\": \"685e14896fe51087df7aec1a\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Change Current User Password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"currentPassword\": \"Anu123456789\",\r\n    \"newPassword\": \"Anu12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://jobbee-api-6327.onrender.com/api/v1/password/update",
+							"protocol": "https",
+							"host": [
+								"jobbee-api-6327",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"password",
+								"update"
+							]
+						},
+						"description": "Allows the authenticated user to update their password by providing the current password and a new one. Ensures secure password change for active sessions."
+					},
+					"response": [
+						{
+							"name": "Change Current User Password",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"currentPassword\": \"Anu123456789\",\r\n    \"newPassword\": \"Anu12345\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://jobbee-api-6327.onrender.com/api/v1/password/update",
+									"protocol": "https",
+									"host": [
+										"jobbee-api-6327",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"v1",
+										"password",
+										"update"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 30 Jun 2025 00:45:01 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "169"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "content-security-policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "cross-origin-opener-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "cross-origin-resource-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"c6-CaIS21LvOR02woFledkrlkp7U2I\""
+								},
+								{
+									"key": "origin-agent-cluster",
+									"value": "?1"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "rndr-id",
+									"value": "3a130841-4562-446b"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NWVmYTA5MWU1OTkyOGQ1MTYzMWM2YSIsImlhdCI6MTc1MTI0NDMwMSwiZXhwIjoxNzUxODQ5MTAxfQ.pixrjyGLwX2eRQdJlLHpvh5CWzyyG12TQ4TvAeIg3KY; Path=/; Expires=Mon, 07 Jul 2025 00:45:01 GMT; HttpOnly; SameSite=Strict"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "x-permitted-cross-domain-policies",
+									"value": "none"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "100"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "96"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "1751244807"
+								},
+								{
+									"key": "x-render-origin-server",
+									"value": "Render"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "0"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "9579a36a8bda017f-CDG"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NWVmYTA5MWU1OTkyOGQ1MTYzMWM2YSIsImlhdCI6MTc1MTI0NDMwMSwiZXhwIjoxNzUxODQ5MTAxfQ.pixrjyGLwX2eRQdJlLHpvh5CWzyyG12TQ4TvAeIg3KY\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Current User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://jobbee-api-6327.onrender.com/api/v1/me/delete",
+							"protocol": "https",
+							"host": [
+								"jobbee-api-6327",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"me",
+								"delete"
+							]
+						},
+						"description": "Permanently deletes the currently authenticated user from the database, along with all associated files and data. This action is irreversible and requires authentication."
+					},
+					"response": [
+						{
+							"name": "Delete Current User",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://jobbee-api-6327.onrender.com/api/v1/me/delete",
+									"protocol": "https",
+									"host": [
+										"jobbee-api-6327",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"v1",
+										"me",
+										"delete"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 30 Jun 2025 00:58:21 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "53"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "content-security-policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "cross-origin-opener-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "cross-origin-resource-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"3b-Bzn4G/u5jtlr7+zODaZHsioDT30\""
+								},
+								{
+									"key": "origin-agent-cluster",
+									"value": "?1"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "rndr-id",
+									"value": "dd15a0a4-47d9-48b9"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "token=none; Path=/; Expires=Mon, 30 Jun 2025 00:58:21 GMT; HttpOnly"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "x-permitted-cross-domain-policies",
+									"value": "none"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "100"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "99"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "1751245701"
+								},
+								{
+									"key": "x-render-origin-server",
+									"value": "Render"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "0"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "9579b6f5bd57bb6f-CDG"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Your account has been deleted!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Show All Jobs Applied By User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://jobbee-api-6327.onrender.com/api/v1/jobs/applied",
+							"protocol": "https",
+							"host": [
+								"jobbee-api-6327",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"jobs",
+								"applied"
+							]
+						},
+						"description": "Retrieves a list of all jobs the currently authenticated user has applied to. Useful for tracking application history and status."
+					},
+					"response": [
+						{
+							"name": "Show All Jobs Applied By User",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://jobbee-api-6327.onrender.com/api/v1/jobs/applied",
+									"protocol": "https",
+									"host": [
+										"jobbee-api-6327",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"v1",
+										"jobs",
+										"applied"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 30 Jun 2025 00:48:08 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "624"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "content-security-policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "cross-origin-opener-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "cross-origin-resource-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"493-qJRYrghu88gYRkFx+qoBnrHfo10\""
+								},
+								{
+									"key": "origin-agent-cluster",
+									"value": "?1"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "rndr-id",
+									"value": "68c8cb2a-e601-45a4"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "x-permitted-cross-domain-policies",
+									"value": "none"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "100"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "95"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "1751244807"
+								},
+								{
+									"key": "x-render-origin-server",
+									"value": "Render"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "0"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "9579a8003fcef4f5-CDG"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"results\": 1,\n    \"data\": [\n        {\n            \"location\": {\n                \"type\": \"Point\",\n                \"coordinates\": [\n                    -84.537304,\n                    33.882848\n                ],\n                \"formattedAddress\": \"561, Plaza Drive SE, The Highlands, Smyrna, Cobb County, Georgia, 30082, USA\",\n                \"city\": \"Smyrna\",\n                \"state\": \"Georgia\",\n                \"zipcode\": \"30082\",\n                \"country\": \"US\"\n            },\n            \"_id\": \"685fbae6041b0883c83eece7\",\n            \"title\": \"Telecom Network Engineer\",\n            \"description\": \"We are hiring a Telecom Network Engineer experienced in configuring and maintaining VoIP systems, 5G networks, and Cisco hardware.\",\n            \"email\": \"networkjobs@telelinknet.com\",\n            \"address\": \"56 Spectrum Plaza, Atlanta, GA, 30303\",\n            \"company\": \"TeleLink Networks\",\n            \"industry\": [\n                \"Telecommunication\"\n            ],\n            \"jobType\": \"Permanent\",\n            \"minEducation\": \"Masters\",\n            \"positions\": 3,\n            \"experience\": \"5 Years+\",\n            \"salary\": 100000,\n            \"lastDate\": \"2025-07-05T09:49:46.644Z\",\n            \"applicantsApplied\": [\n                {\n                    \"id\": \"685efa091e59928d51631c6a\",\n                    \"resume\": \"Anu_Adebayo_685fbae6041b0883c83eece7.pdf\"\n                },\n                {\n                    \"id\": \"685efa091e59928d51631c6a\",\n                    \"resume\": \"Anu_Adebayo_685fbae6041b0883c83eece7.pdf\"\n                },\n                {\n                    \"id\": \"685efa091e59928d51631c6a\",\n                    \"resume\": \"Anu_Adebayo_685fbae6041b0883c83eece7.pdf\"\n                }\n            ],\n            \"user\": \"685e14896fe51087df7aec1a\",\n            \"postingDate\": \"2025-06-28T09:50:30.402Z\",\n            \"slug\": \"telecom-network-engineer\",\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Jobs Published By Employer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://jobbee-api-6327.onrender.com/api/v1/jobs/published",
+							"protocol": "https",
+							"host": [
+								"jobbee-api-6327",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"jobs",
+								"published"
+							]
+						},
+						"description": "Retrieves all jobs created by the currently authenticated employer or admin. Useful for managing and tracking posted job listings."
+					},
+					"response": [
+						{
+							"name": "Get Jobs Published By Employer",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://jobbee-api-6327.onrender.com/api/v1/jobs/published",
+									"protocol": "https",
+									"host": [
+										"jobbee-api-6327",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"v1",
+										"jobs",
+										"published"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 30 Jun 2025 01:11:42 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "838"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "content-security-policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "cross-origin-opener-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "cross-origin-resource-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"6df-XPTStUjA9bQJbBLCh12Mt34aLrY\""
+								},
+								{
+									"key": "origin-agent-cluster",
+									"value": "?1"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "rndr-id",
+									"value": "316c2fa3-6e84-458a"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "x-permitted-cross-domain-policies",
+									"value": "none"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "100"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "98"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "1751246494"
+								},
+								{
+									"key": "x-render-origin-server",
+									"value": "Render"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "0"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "9579ca88bc4674f3-CDG"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"results\": 2,\n    \"data\": [\n        {\n            \"location\": {\n                \"type\": \"Point\",\n                \"coordinates\": [\n                    -84.300315,\n                    33.806302\n                ],\n                \"formattedAddress\": \"959, Heritage Hills, Toco Hills, Decatur, DeKalb County, Georgia, 30033, USA\",\n                \"city\": \"Decatur\",\n                \"state\": \"Georgia\",\n                \"zipcode\": \"30033\",\n                \"country\": \"US\"\n            },\n            \"_id\": \"685e2a7f452b6c3b1abf2eaf\",\n            \"title\": \"Mobile App Developer!\",\n            \"description\": \"Develop engaging and standardized academic content for online and classroom use. Expertise in instructional design and K-12tertiary education is required.\",\n            \"email\": \"jobs@mobilefuture.com\",\n            \"address\": \"95 Heritage Street, Atlanta, GA, 30303\",\n            \"company\": \"LearnBridge Academy\",\n            \"industry\": [\n                \"Education/Training\"\n            ],\n            \"jobType\": \"Contract\",\n            \"minEducation\": \"Masters\",\n            \"positions\": 3,\n            \"experience\": \"5 Years+\",\n            \"salary\": 75000,\n            \"lastDate\": \"2025-07-04T05:05:31.870Z\",\n            \"user\": \"685e14896fe51087df7aec1a\",\n            \"postingDate\": \"2025-06-27T05:22:07.845Z\",\n            \"slug\": \"curriculum-developer\",\n            \"__v\": 0\n        },\n        {\n            \"location\": {\n                \"type\": \"Point\",\n                \"coordinates\": [\n                    -84.537304,\n                    33.882848\n                ],\n                \"formattedAddress\": \"561, Plaza Drive SE, The Highlands, Smyrna, Cobb County, Georgia, 30082, USA\",\n                \"city\": \"Smyrna\",\n                \"state\": \"Georgia\",\n                \"zipcode\": \"30082\",\n                \"country\": \"US\"\n            },\n            \"_id\": \"685fbae6041b0883c83eece7\",\n            \"title\": \"Telecom Network Engineer\",\n            \"description\": \"We are hiring a Telecom Network Engineer experienced in configuring and maintaining VoIP systems, 5G networks, and Cisco hardware.\",\n            \"email\": \"networkjobs@telelinknet.com\",\n            \"address\": \"56 Spectrum Plaza, Atlanta, GA, 30303\",\n            \"company\": \"TeleLink Networks\",\n            \"industry\": [\n                \"Telecommunication\"\n            ],\n            \"jobType\": \"Permanent\",\n            \"minEducation\": \"Masters\",\n            \"positions\": 3,\n            \"experience\": \"5 Years+\",\n            \"salary\": 100000,\n            \"lastDate\": \"2025-07-05T09:49:46.644Z\",\n            \"user\": \"685e14896fe51087df7aec1a\",\n            \"postingDate\": \"2025-06-28T09:50:30.402Z\",\n            \"slug\": \"telecom-network-engineer\",\n            \"__v\": 1\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete User(Admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://jobbee-api-6327.onrender.com/api/v1/user/685e1a31f130d3f6bf07c169",
+							"protocol": "https",
+							"host": [
+								"jobbee-api-6327",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"685e1a31f130d3f6bf07c169"
+							]
+						},
+						"description": "Allows an admin to permanently delete any user or employer from the database. This route is restricted to administrators only."
+					},
+					"response": [
+						{
+							"name": "Delete User(Admin)",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://jobbee-api-6327.onrender.com/api/v1/user/685e1a31f130d3f6bf07c169",
+									"protocol": "https",
+									"host": [
+										"jobbee-api-6327",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"685e1a31f130d3f6bf07c169"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 30 Jun 2025 01:14:47 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "58"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "content-security-policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "cross-origin-opener-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "cross-origin-resource-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"38-wkMXwavAQP3YwNtTLjoETpqj2Xw\""
+								},
+								{
+									"key": "origin-agent-cluster",
+									"value": "?1"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "rndr-id",
+									"value": "fc0d900f-8cd1-477c"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "x-permitted-cross-domain-policies",
+									"value": "none"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "100"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "97"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "1751246494"
+								},
+								{
+									"key": "x-render-origin-server",
+									"value": "Render"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "0"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "9579cf09af0dd554-CDG"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"User just deleted by ADMIN!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Show all users (Admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://jobbee-api-6327.onrender.com/api/v1/users",
+							"protocol": "https",
+							"host": [
+								"jobbee-api-6327",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						},
+						"description": "This request retrieves a list of all registered users in the system. It is accessible only by an Admin. The response includes user details such as ID, name, email, role, and registration date."
+					},
+					"response": [
+						{
+							"name": "Show all users (Admin)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://jobbee-api-6327.onrender.com/api/v1/users",
+									"protocol": "https",
+									"host": [
+										"jobbee-api-6327",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 30 Jun 2025 01:16:42 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "235"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "content-security-policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "cross-origin-opener-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "cross-origin-resource-policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"152-fJM/rMTt22thW6G8y12gkud97yc\""
+								},
+								{
+									"key": "origin-agent-cluster",
+									"value": "?1"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "rndr-id",
+									"value": "2e4fdb78-bb4b-4b85"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "x-permitted-cross-domain-policies",
+									"value": "none"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "100"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "96"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "1751246494"
+								},
+								{
+									"key": "x-render-origin-server",
+									"value": "Render"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "0"
+								},
+								{
+									"key": "cf-cache-status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "9579d1d7ec2e2297-CDG"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"results\": 1,\n    \"data\": [\n        {\n            \"_id\": \"685e14896fe51087df7aec1a\",\n            \"name\": \"Uwa-Duff\",\n            \"email\": \"blessingduff79@gmail.com\",\n            \"role\": \"admin\",\n            \"createdAt\": \"2025-06-27T03:48:25.747Z\",\n            \"resetPasswordExpired\": \"1751241004350\",\n            \"resetPasswordToken\": \"27771004cd31e6485f4d52013fd14a893ad6ed56c733a4ef51ecbeec78bc26b5\",\n            \"id\": \"685e14896fe51087df7aec1a\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			],
+			"description": "Includes all routes related to user management, such as retrieving user profiles, updating account information, changing passwords, and managing roles. These routes support both general users and administrators."
+		}
+	]
+}
