@@ -36,7 +36,12 @@ const userSchema = new mongoose.Schema({
     resetPasswordToken: String,
     resetPasswordExpired: String
 }, {
-    toJSON: {virtuals: true},
+    toJSON: {
+        virtuals: true,
+        transform: (doc, ret) => {
+            delete ret.id
+        }
+    },
     toObject: {virtuals: true}
 });
 

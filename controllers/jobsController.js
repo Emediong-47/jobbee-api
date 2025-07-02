@@ -6,6 +6,7 @@ const geoCoder = require("../utils/geoCoder");
 const qs = require("qs");
 const fs = require("fs");
 const path = require("path");
+const { default: slugify } = require("slugify");
 
 exports.getJobs = catchAsyncErrors(async (req, res, next) => {
   const parsedQuery = qs.parse(req.query);
@@ -71,6 +72,13 @@ exports.updateJob = catchAsyncErrors(async (req, res, next) => {
 
   if(job.user.toString() !== req.user.id && req.user.role !== "admin") {
     return next(new ErrorHandler(`User(${req.user.id}) is not allowed to update this job.`, 403));
+  }
+
+  if(req.body.hasOwnProperty("title")) {
+    await Jobs.findByIdAndUpdate(req.params.id, {slug: slugify(req.body.title, {lower: true})}, {
+      new: true,
+      runValidators:true
+    });
   }
 
   job = await Jobs.findByIdAndUpdate(req.params.id, req.body, {
@@ -204,8 +212,9 @@ exports.applyJob = catchAsyncErrors(async (req, res, next) => {
   }
 
   file.name = `${req.user.name.replace(" ", "_")}_${job._id}${path.parse(file.name).ext}`;
+  const uploadPath = path.resolve(process.env.UPLOAD_PATH);
 
-  file.mv(`${process.env.UPLOAD_PATH}/${file.name}`, async err => {
+  file.mv(`${uploadPath}/${file.name}`, async err => {
     if(err) {
       console.log(err);
       return next(new ErrorHandler("Resume upload failed!", 500));
