@@ -214,6 +214,10 @@ exports.applyJob = catchAsyncErrors(async (req, res, next) => {
   file.name = `${req.user.name.replace(" ", "_")}_${job._id}${path.parse(file.name).ext}`;
   const uploadPath = path.resolve(process.env.UPLOAD_PATH);
 
+  if(!fs.existsSync(uploadPath)) {
+    fs.mkdirSync(uploadPath, {recursive: true});
+  }
+
   file.mv(`${uploadPath}/${file.name}`, async err => {
     if(err) {
       console.log(err);
